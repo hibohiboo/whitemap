@@ -19,3 +19,15 @@ No. A User can tweet own charactersheet. However, My application doesn't use Twi
 # If you’ll display Twitter content off of Twitter, explain how and where Tweets and Twitter content will be displayed to users of your product or service, including whether Tweets and Twitter content will be displayed at row level or aggregated
 I have no plan to display Twitter data on my site or outside of twitter. I use Twitter API to authenticate users.
 ```
+
+## App の作成
+
+![](./img/twitter/2019-10-12-07-18-33.png)
+
+i のついているところは必須項目なので埋める
+
+![](./img/twitter/2019-10-12-07-22-43.png)
+
+アクセス権限を Read-only にする。
+
+![](./img/twitter/2019-10-12-07-25-41.png)
