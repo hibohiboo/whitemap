@@ -5,5 +5,5 @@ services:
     build: ./gcloud
     env_file: .env
     volumes:
-      - ../../laravel_docker/sampleapp:/var/www
+      - ../../laravel_docker/whitemap:/var/www
     working_dir: /var/www
