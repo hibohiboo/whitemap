@@ -12,6 +12,8 @@
 ## laravel ログイン
 
 [Laravel 6.0 ログイン機能を実装する](https://qiita.com/ucan-lab/items/bd0d6f6449602072cb87)
+[Laravel 6.0 ログイン機能を実装する](https://blog.capilano-fw.com/?p=4576)
+[【Laravel + JavaScript】QR コードで自動ログインする機能をつくる（ダウンロード可）](https://blog.capilano-fw.com/?p=3969)
 
 ## twitter laravel 連携
 
@@ -41,7 +43,13 @@
 [Firebase と Laravel の連携検証してその先の DALI-KNX を目指す](https://digital-light.jp/2018/09/13/tried-to-connect-firebase-with-laravel-for-dali-knx/)
 [[Laravel] Firebae の ID トークンをバックエンドで確認する](https://atuweb.net/201809_laravel_verify_firebase_token/)
 [Laravel Firebase Auth](https://medium.com/@morrislaptop/laravel-firebase-auth-cff892b116a2) \*
+[laravel-firebase](https://github.com/kreait/laravel-firebase)
 
 ## laravel
 
 [[Laravel] 6.0.4 がリリースされました](https://xzxzyzyz.com/2019/09/laravel-604-released/)
+
+## nginx
+
+[Laradock の Nginx を SSL 化する](https://qiita.com/osakana9114/items/48fb03e51e23dd02871c)
+[コピペで OK！ローカル環境に HTTPS を導入する（nginx 編）](https://blog.capilano-fw.com/?p=2228)
