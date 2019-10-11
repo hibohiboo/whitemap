@@ -1,3 +1,7 @@
 {
-  "php.executablePath": "C:\\tools\\php73\\php.exe"
+  "php.executablePath": "C:\\tools\\php73\\php.exe",
+  "pasteImage.path": "${projectRoot}/docs/img/${currentFileNameWithoutExt}",
+  "pasteImage.basePath": "${projectRoot}/docs",
+  "pasteImage.forceUnixStyleSeparator": true,
+  "pasteImage.prefix": "./"
 }
