@@ -13,6 +13,29 @@ env_variables:
   APP_LOG: errorlog
 ```
 
+laravel_docker/whitemap/.gcloudignore に追記
+
+```diff
+/vendor/
++ .env
++ /storage/
+```
+
+laravel_docker/whitemap/composer.json に追記
+
+```diff
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
++        "gcp-build": [
++            "composer install --no-dev"
++        ],
++        "post-install-cmd": [
++            "chmod -R 755 bootstrap/cache",
++            "php artisan cache:clear"
++        ]
+```
+
 ログインして、デプロイする。
 初回デプロイではリージョンを聞かれるので慎重に選ぶ。選びなおせない。
 東京なら、[2] asia-northeast1 (supports standard and flexible)を選ぶこと。
