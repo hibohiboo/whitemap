@@ -9,6 +9,10 @@
 [Laravel 公式](https://readouble.com/laravel/)
 [Laradoc 公式](https://laradock.io/)
 
+## laravel ログイン
+
+[Laravel 6.0 ログイン機能を実装する](https://qiita.com/ucan-lab/items/bd0d6f6449602072cb87)
+
 ## twitter laravel 連携
 
 [Laravel + Nuxt.js + Firebase でいい感じに Twitter によるソーシャルログインを実現する](https://qiita.com/maguro_tuna/items/4b3ecd7502e218f103ca)
@@ -37,3 +41,7 @@
 [Firebase と Laravel の連携検証してその先の DALI-KNX を目指す](https://digital-light.jp/2018/09/13/tried-to-connect-firebase-with-laravel-for-dali-knx/)
 [[Laravel] Firebae の ID トークンをバックエンドで確認する](https://atuweb.net/201809_laravel_verify_firebase_token/)
 [Laravel Firebase Auth](https://medium.com/@morrislaptop/laravel-firebase-auth-cff892b116a2) \*
+
+## laravel
+
+[[Laravel] 6.0.4 がリリースされました](https://xzxzyzyz.com/2019/09/laravel-604-released/)
