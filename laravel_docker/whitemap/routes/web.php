@@ -24,3 +24,7 @@ Route::get('/agreement', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/callback', function () {
+    return view('callback');
+});

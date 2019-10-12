@@ -48,8 +48,13 @@
 ## laravel
 
 [[Laravel] 6.0.4 がリリースされました](https://xzxzyzyz.com/2019/09/laravel-604-released/)
+[ファサードと DI テストについて](https://qiita.com/yousan/items/18dab4dbac4a27ce3662)
 
 ## nginx
 
 [Laradock の Nginx を SSL 化する](https://qiita.com/osakana9114/items/48fb03e51e23dd02871c)
 [コピペで OK！ローカル環境に HTTPS を導入する（nginx 編）](https://blog.capilano-fw.com/?p=2228)
+
+## firestore
+
+[Firebase で作った Web サービスを 3 ヶ月運用してみて、ハマったこと・知っておきたかったこと](https://qiita.com/kira_puka/items/ef7dd47519403cd9bcf2)

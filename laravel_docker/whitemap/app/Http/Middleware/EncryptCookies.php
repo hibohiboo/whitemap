@@ -13,5 +13,7 @@ class EncryptCookies extends Middleware
      */
     protected $except = [
         //
+                // 開発環境での例外
+                'XDEBUG_SESSION', 'adminer_version', 'adminer_sid', 'adminer_key', 'adminer_permanent', '_ga', '_gid'
     ];
 }

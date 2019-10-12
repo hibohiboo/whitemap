@@ -3,30 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="チャットツールを試すことができます。" />
+    <meta name="description" content="ログインテストページ" />
     <meta name="keywords" content="TRPG,開発,ツール" />
     <meta name="robots" content="index" />
-    <meta name="og:sitename" content="チャットロビー" />
-    <meta name="og:locale" content="ja_JP" />
-    <meta name="og:title" content="チャットロビー" />
-    <meta
-      name="og:description"
-      content="チャットツールを試すことができます。"
-    />
-    <meta
-      name="og:url"
-      content="https://wasureta-d6b34.firebaseapp.com/lobby/"
-    />
-    <meta name="twitter:site" content="@hibohiboo" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@hibohiboo" />
-    <meta name="twitter:title" content="チャットロビー" />
-    <meta
-      name="twitter:description"
-      content="チャットツールを試すことができます。"
-    />
-    <meta name="twitter:image" content="" />
-    <title>チャットロビー</title>
+
+    <title>ログインテストページ</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -48,7 +29,24 @@
 });
       // FirebaseUI config.
       var uiConfig = {
-        signInSuccessUrl: '/',
+        signInSuccessUrl: '/callback',
+        callbacks: {
+            signInSuccessWithAuthResult : (authResult,c)=>{
+                var user = authResult.user;
+                var credential = authResult.credential;
+                var isNewUser = authResult.additionalUserInfo.isNewUser;
+                var providerId = authResult.additionalUserInfo.providerId;
+                var operationType = authResult.operationType;
+                // Do something with the returned AuthResult.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+                console.log('firebaseAuthUser', user);
+                console.log(credential);
+                console.log('twitterUser', authResult.additionalUserInfo)
+                return false;
+            },
+        },
+
         signInOptions: [
           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
         ],
@@ -67,7 +65,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PBSJTDV');</script>
     <!-- End Google Tag Manager -->
-    <link href="/lobby/main-a705a478f556a51df83f.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
