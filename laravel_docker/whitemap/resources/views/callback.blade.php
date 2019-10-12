@@ -40,7 +40,10 @@
               }, null, '  ');
             });
             const idToken = await user.getIdToken(true)
-            await axios.post('/api/auth', { idToken })
+            const { data } = await axios.post('/api/auth', { idToken })
+            // axios.setToken(data.token, 'Bearer')
+            console.log('data', data)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
           } else {
             // User is signed out.
             document.getElementById('sign-in-status').textContent = 'Signed out';
@@ -54,6 +57,10 @@
 
       window.addEventListener('load', function() {
         initApp();
+        document.getElementById('test').addEventListener('click', async function(){
+            var test = await axios.get('/api/hoge');
+            console.log(test)
+        })
       });
     </script>
   </head>
@@ -62,5 +69,6 @@
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>
     <pre id="account-details"></pre>
+    <button id="test">test</button>
   </body>
 </html>

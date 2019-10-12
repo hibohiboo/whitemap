@@ -43,15 +43,18 @@ class LoginAction extends Controller
         $uid = $verifiedIdToken->getClaim('sub');
         $firebase_user = $this->auth->getUser($uid);
         $user = \App\User::firstOrCreate(
-            ['firebase_uid' => $uid,
-            'name' => $firebase_user->displayName, 
+            ['firebase_uid' => $uid],
+            ['name' => $firebase_user->displayName, 
             'twitter_screen_name' => $request->input('twitter_screen_name'),
             'twitter_profile_image_url_https' => $request->input('twitter_profile_image_url_https')]
         );
 
+        $token = $user->createToken('example_token')->accessToken; // この行追加
+
         return response()->json([
             'uid' => $uid,
             'name' => $firebase_user->displayName,
+            'token' => $token
         ]);
     }
 }

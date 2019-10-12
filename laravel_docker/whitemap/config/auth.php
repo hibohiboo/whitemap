@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport', // 'token' から 'passport' に変更
             'provider' => 'users',
             'hash' => false,
         ],

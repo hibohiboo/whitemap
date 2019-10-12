@@ -10,9 +10,9 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
-        "kreait/firebase-php": "^4.33",
         "kreait/laravel-firebase": "^1.1",
         "laravel/framework": "^6.0",
+        "laravel/passport": "^7.5",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
