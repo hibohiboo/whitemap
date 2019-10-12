@@ -12,7 +12,7 @@ class LoginAction extends Controller
     /**
      * @var Firebase
      */
-    private $firebase;
+    private $auth;
 
     /**
      * コンストラクタインジェクションで $firebase を用意します
@@ -36,7 +36,7 @@ class LoginAction extends Controller
             $verifiedIdToken = $this->auth->verifyIdToken($id_token);
         } catch (InvalidToken $e) {
             return response()->json([
-                'error' => 'error!!',
+                'error' => $e,
             ]);
         }
 

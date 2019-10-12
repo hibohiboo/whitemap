@@ -49,6 +49,9 @@
                 (async ()=>{
                     const idToken = await user.getIdToken(true);
                     console.log(idToken);
+                    document.getElementById('token').value = `${idToken}`;
+                    document.getElementById('loginform').submit();
+                    return;
                     await axios.post('/api/auth', { idToken, twitter_screen_name, twitter_profile_image_url_https })
                 })();
 
@@ -81,5 +84,9 @@
     <!-- End Google Tag Manager (noscript) -->
     <h1>ログイン</h1>
     <div id="firebaseui-auth-container"></div>
+    <form id="loginform" action="/login" method="post" style="display:none">
+        {{ csrf_field() }}
+        <input id="token" name="token">
+    </form>
   </body>
 </html>

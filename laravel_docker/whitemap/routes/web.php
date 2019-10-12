@@ -28,3 +28,7 @@ Route::get('/login', function () {
 Route::get('/callback', function () {
     return view('callback');
 });
+Route::post('/login', 'LoginController@authenticate');
+Route::get('/home', function () {
+    return view('home');
+});

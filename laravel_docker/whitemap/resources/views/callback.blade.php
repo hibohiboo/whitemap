@@ -41,7 +41,7 @@
             });
             const idToken = await user.getIdToken(true)
             const { data } = await axios.post('/api/auth', { idToken })
-            // axios.setToken(data.token, 'Bearer')
+            axios.setToken(data.token, 'Bearer')
             console.log('data', data)
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
           } else {
@@ -70,5 +70,10 @@
     <div id="sign-in"></div>
     <pre id="account-details"></pre>
     <button id="test">test</button>
+    <form id="loginform" action="/login" method="post" style="display:none">
+    {{ csrf_field() }}
+    <input id="token" name="token">
+    <input type='submit' value="送信">
+    </form>
   </body>
 </html>
