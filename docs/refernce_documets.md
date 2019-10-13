@@ -58,3 +58,8 @@
 ## firestore
 
 [Firebase で作った Web サービスを 3 ヶ月運用してみて、ハマったこと・知っておきたかったこと](https://qiita.com/kira_puka/items/ef7dd47519403cd9bcf2)
+
+## laravel passport
+
+[Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
+[Trouble deploying Laravel Passport with Google App Engine (GAE)](https://stackoverflow.com/questions/55485243/trouble-deploying-laravel-passport-with-google-app-engine-gae)

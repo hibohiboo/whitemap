@@ -10,3 +10,7 @@ RUN apk add bash
 COPY .bashrc /root/.bashrc
 RUN /usr/src/gcp/google-cloud-sdk/install.sh
 
+# プロキシの設定(MySQLを触りたい)
+# https://cloud.google.com/sql/docs/mysql/connect-external-app#install
+RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+RUN chmod +x cloud_sql_proxy

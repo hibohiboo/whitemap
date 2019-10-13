@@ -94,3 +94,8 @@ To view your application in the web browser run:
   $ gcloud app browse --project=プロジェクトID
 bash-5.0#
 ```
+
+## 参考
+
+[Laravel](https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard?hl=ja)
+[Laravel Framework on App Engine Standard for PHP 7.2](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/appengine/php72/laravel-framework)
