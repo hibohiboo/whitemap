@@ -6,6 +6,8 @@ use App\Auth\MyEloquentUserProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Auth; 
+use App\Gate\UserAccess; 
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -22,18 +24,22 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
         $this->registerPolicies();
 
         //
-        $this->app['auth']->extend('my_session', function($app, $name, array $config) {
-            $provider = Auth::createUserProvider($config['provider']);
-            return new MySessionGuard($name, $provider, $app['session.store']);
-        });
  
         Auth::provider('my_eloquent', function($app, array $config) {
             return new MyEloquentUserProvider($app['hash'], $config['model']);
+        });
+
+        // 認可
+        $gate->define('user-access', new UserAccess);
+
+        // 認可の前にロギング
+        $gate->before(function ($user, $ability) use ($logger) {
+            $logger->info($ability, ['firebase_uid'=>$user->getAuthIdentifier()]);
         });
     }
 }
