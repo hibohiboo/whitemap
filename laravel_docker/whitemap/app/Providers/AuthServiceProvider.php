@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Auth; 
 use App\Gate\UserAccess; 
+use \Psr\LOg\LoggerInterface;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,10 +25,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot(LoggerInterface $logger)
     {
         $this->registerPolicies();
-
         //
  
         Auth::provider('my_eloquent', function($app, array $config) {
@@ -35,10 +35,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // 認可
-        $gate->define('user-access', new UserAccess);
+        Gate::define('user-access', new UserAccess);
 
         // 認可の前にロギング
-        $gate->before(function ($user, $ability) use ($logger) {
+        Gate::before(function ($user, $ability) use ($logger) {
             $logger->info($ability, ['firebase_uid'=>$user->getAuthIdentifier()]);
         });
     }

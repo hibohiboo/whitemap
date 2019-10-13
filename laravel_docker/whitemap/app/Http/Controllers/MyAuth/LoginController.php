@@ -11,15 +11,17 @@ class LoginController extends Controller
      * @var Firebase
      */
     private $auth;
+    private $logger;
 
     /**
      * コンストラクタインジェクションで $firebase を用意
      * @param Firebase $firebase
      */
-    public function __construct(\Kreait\Firebase\Auth $auth)
+    public function __construct(\Kreait\Firebase\Auth $auth,  \Psr\LOg\LoggerInterface $logger)
     {
         $this->auth = $auth;
         $this->middleware('guest')->except('logout');
+        $this->logger = $logger;
     }
 
 
@@ -37,6 +39,7 @@ class LoginController extends Controller
         try {
             $verifiedIdToken = $this->auth->verifyIdToken($id_token);
         } catch (InvalidToken $e) {
+            $logger->error("invalidToken", $e->toString());
             return response()->json([
                 'error' => $e->toString(),
             ]);
