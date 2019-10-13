@@ -33,7 +33,7 @@ gcloud sql instances describe インスタンス名 | grep connectionName
 実行した後、Enter を押さないと止まったように見える。
 
 ```
-cloud_sql_proxy -instances=プロジェクトID:asia-northeast1:インスタンス名=tcp:3306 &
+cloud_sql_proxy -instances=whitemap-255523:asia-northeast1:db01=tcp:3306 &
 ```
 
 #### MySQL に接続してインスタンスを作る
@@ -51,8 +51,8 @@ gcloud sql databases create laravel --instance=インスタンス名
 #### テーブルの作成
 
 ```
+export DB_DATABASE=laravel DB_USERNAME=root DB_PASSWORD=YOUR_DB_PASSWORD DB_HOST=127.0.0.1
 php artisan session:table
-export DB_DATABASE=laravel DB_USERNAME=root DB_PASSWORD=YOUR_DB_PASSWORD
 php artisan migrate --force
 ```
 
@@ -61,6 +61,12 @@ php artisan migrate --force
 ```
 gcloud sql users create [USER_NAME] --host=[HOST] --instance=[INSTANCE_NAME] --password=[PASSWORD]
 ```
+
+### コンソールについて
+
+以下から接続できる。
+![](./img/gcp_mysql/2019-10-13-22-07-55.png)
+コンソールで、作成したユーザで入れることを確認したほうがよいかと。
 
 #### 設定ファイルの修正
 
@@ -125,6 +131,50 @@ env_variables:
     <public key here>
     -----END PUBLIC KEY-----
 ```
+
+### cloud sql について
+
+![](./img/gcp_mysql/2019-10-13-20-36-40.png)
+ほとんどデータいれていない状態で、1.13GiB あって少し驚いたけど、
+メタデータとかも容量に含まれているのね。
+
+### root で接続できなかった。
+
+再起動して、パスワード変更したら直った。
+いったい。。。
+
+### 文字コードについて
+
+デフォルトは utf8。
+utf8mb4 にするなら、データベースを作るときに気を付けること。
+
+```
+CREATE DATABASE example CHARACTER SET utf8mb4;
+```
+
+```
+mysql> show variables like 'character%';
++--------------------------+----------------------------+
+| Variable_name            | Value                      |
++--------------------------+----------------------------+
+| character_set_client     | utf8                       |
+| character_set_connection | utf8                       |
+| character_set_database   | utf8mb4                    |
+| character_set_filesystem | binary                     |
+| character_set_results    | utf8                       |
+| character_set_server     | utf8                       |
+| character_set_system     | utf8                       |
+| character_sets_dir       | /usr/share/mysql/charsets/ |
++--------------------------+----------------------------+
+8 rows in set (0.04 sec)
+```
+
+### 本番用はアカウントを作ったほうがいい模様。
+
+![](./img/gcp_mysql/2019-10-13-22-30-38.png)
+![](./img/gcp_mysql/2019-10-13-22-31-22.png)
+![](./img/gcp_mysql/2019-10-13-22-34-20.png)
+![](./img/gcp_mysql/2019-10-13-22-36-25.png)
 
 ## 参考
 
