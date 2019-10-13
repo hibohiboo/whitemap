@@ -56,7 +56,7 @@ class LoginController extends Controller
             'twitter_profile_image_url_https' => $request->input('twitter_profile_image_url_https')]
         );
 
-        if (Auth::attempt($credentials, true)) {
+        if (Auth::attempt($credentials)) {
             // 認証に成功した
             // return redirect()->intended('home');
             return redirect('/home');

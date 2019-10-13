@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MyAuth;
 
 use Illuminate\Http\Request;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Illuminate\Http\JsonResponse;
 use \Kreait\Firebase\Auth;
-
+use App\Http\Controllers\Controller;
 class LoginAction extends Controller
 {
     /**
