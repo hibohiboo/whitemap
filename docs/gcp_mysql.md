@@ -81,6 +81,51 @@ env_variables:
   APP_LOG: errorlog
 ```
 
+### passport の外だし
+
+```
+php artisan vendor:publish --tag=passport-config
+```
+
+.env に書き込む
+
+```
+PASSPORT_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+<private key here>
+-----END RSA PRIVATE KEY-----"
+
+PASSPORT_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+<public key here>
+-----END PUBLIC KEY-----"
+```
+
+app.yaml は以下のようにする。
+
+```
+runtime: php72
+
+env_variables:
+  APP_KEY: YOUR_APP_KEY
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
+  ## Set these environment variables according to your CloudSQL configuration.
+  DB_DATABASE: YOUR_DB_DATABASE
+  DB_USERNAME: YOUR_DB_USERNAME
+  DB_PASSWORD: YOUR_DB_PASSWORD
+  DB_SOCKET: "/cloudsql/YOUR_CONNECTION_NAME"
+  APP_LOG: errorlog
+  PASSPORT_PRIVATE_KEY: |
+    -----BEGIN RSA PRIVATE KEY-----
+    <private key here>
+    -----END RSA PRIVATE KEY-----
+  PASSPORT_PUBLIC_KEY: |
+    -----BEGIN PUBLIC KEY-----
+    <public key here>
+    -----END PUBLIC KEY-----
+```
+
 ## 参考
 
 [Run Laravel on Google App Engine standard environment](https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard)
@@ -88,3 +133,6 @@ env_variables:
 [Cloud SQL for MySQL インスタンス](https://cloud.google.com/sql/docs/mysql/create-instance)
 [【Docker】AlpineLinux を使った Laravel 環境構築](https://qiita.com/gatapon/items/cfdceedee29570185325)
 [Cloud SQL for MySQL ユーザ作成](https://cloud.google.com/sql/docs/mysql/create-manage-users?hl=ja)
+[passport](https://readouble.com/laravel/6.0/ja/passport.html)
+[Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
+[複数行の yaml](https://magazine.rubyist.net/articles/0009/0009-YAML.html#%E8%A4%87%E6%95%B0%E8%A1%8C%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97)

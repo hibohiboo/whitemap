@@ -49,6 +49,7 @@
 
 [[Laravel] 6.0.4 がリリースされました](https://xzxzyzyz.com/2019/09/laravel-604-released/)
 [ファサードと DI テストについて](https://qiita.com/yousan/items/18dab4dbac4a27ce3662)
+[artisan command](https://blog.capilano-fw.com/?p=768)
 
 ## nginx
 
