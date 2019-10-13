@@ -26,5 +26,6 @@ Route::get('/login', function () {
 });
 Route::post('/login', 'MyAuth\LoginController@authenticate');
 Route::get('/home', function () {
+    Log::info("Hello my log,");
     return view('home');
 });

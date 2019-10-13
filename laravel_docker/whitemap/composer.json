@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "google/cloud-error-reporting": "^0.15.0",
+        "google/cloud-logging": "^1.18",
         "kreait/laravel-firebase": "^1.1",
         "laravel/framework": "^6.0",
         "laravel/passport": "^7.5",

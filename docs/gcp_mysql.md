@@ -50,10 +50,13 @@ gcloud sql databases create laravel --instance=インスタンス名
 
 #### テーブルの作成
 
+passport も入れてあるので、その分の artisan も追加。
+
 ```
 export DB_DATABASE=laravel DB_USERNAME=root DB_PASSWORD=YOUR_DB_PASSWORD DB_HOST=127.0.0.1
 php artisan session:table
 php artisan migrate --force
+php artisan passport:install
 ```
 
 #### 接続ユーザの作成

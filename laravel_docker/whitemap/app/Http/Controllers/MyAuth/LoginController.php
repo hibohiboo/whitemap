@@ -17,7 +17,7 @@ class LoginController extends Controller
      * コンストラクタインジェクションで $firebase を用意
      * @param Firebase $firebase
      */
-    public function __construct(\Kreait\Firebase\Auth $auth,  \Psr\LOg\LoggerInterface $logger)
+    public function __construct(\Kreait\Firebase\Auth $auth, \Psr\LOg\LoggerInterface $logger)
     {
         $this->auth = $auth;
         $this->middleware('guest')->except('logout');
