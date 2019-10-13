@@ -55,6 +55,14 @@ env_variables:
   FIREBASE_CREDENTIALS: secret.json
 ```
 
+### cache がないっぽい。
+
+![](./img/gcp_logging/2019-10-14-00-42-01.png)
+
+```
+php artisan cache:table
+```
+
 ## 参考
 
 [Logging](https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard)
