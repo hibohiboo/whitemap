@@ -7,7 +7,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Auth; 
 use App\Gate\UserAccess; 
-use \Psr\LOg\LoggerInterface;
+use \Psr\Log\LoggerInterface;
 
 class AuthServiceProvider extends ServiceProvider
 {
