@@ -189,3 +189,4 @@ mysql> show variables like 'character%';
 [passport](https://readouble.com/laravel/6.0/ja/passport.html)
 [Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
 [複数行の yaml](https://magazine.rubyist.net/articles/0009/0009-YAML.html#%E8%A4%87%E6%95%B0%E8%A1%8C%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97)
+[Laravel5.5 を Google App Engine で動かす](https://qiita.com/fullkawa/items/4d6b080385de5523835c)
