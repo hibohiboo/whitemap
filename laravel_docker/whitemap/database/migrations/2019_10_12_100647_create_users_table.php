@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('twitter_screen_name', 255)->nullable();
             $table->string('twitter_profile_image_url_https', 1024)->nullable();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

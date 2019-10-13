@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MyAuth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use \Kreait\Firebase\Auth;
 
 class LoginController extends Controller
 {
@@ -13,12 +13,13 @@ class LoginController extends Controller
     private $auth;
 
     /**
-     * コンストラクタインジェクションで $firebase を用意します
+     * コンストラクタインジェクションで $firebase を用意
      * @param Firebase $firebase
      */
     public function __construct(\Kreait\Firebase\Auth $auth)
     {
         $this->auth = $auth;
+        $this->middleware('guest')->except('logout');
     }
 
 
@@ -44,7 +45,15 @@ class LoginController extends Controller
         $uid = $verifiedIdToken->getClaim('sub');
         $credentials = ['firebase_uid'=> $uid];
 
-        if (Auth::attempt($credentials)) {
+        $firebase_user = $this->auth->getUser($uid);
+        $user = \App\User::firstOrCreate(
+            ['firebase_uid' => $uid],
+            ['name' => $firebase_user->displayName, 
+            'twitter_screen_name' => $request->input('twitter_screen_name'),
+            'twitter_profile_image_url_https' => $request->input('twitter_profile_image_url_https')]
+        );
+
+        if (Auth::attempt($credentials, true)) {
             // 認証に成功した
             // return redirect()->intended('home');
             return redirect('/home');

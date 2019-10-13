@@ -50,9 +50,11 @@
                     const idToken = await user.getIdToken(true);
                     console.log(idToken);
                     document.getElementById('token').value = `${idToken}`;
+                    document.getElementById('twitter_screen_name').value = `${twitter_screen_name}`;
+                    document.getElementById('twitter_profile_image_url_https').value = `${twitter_profile_image_url_https}`;
                     document.getElementById('loginform').submit();
                     return;
-                    await axios.post('/api/auth', { idToken, twitter_screen_name, twitter_profile_image_url_https })
+                   // await axios.post('/api/auth', { idToken, twitter_screen_name, twitter_profile_image_url_https })
                 })();
 
                 return false;
@@ -87,6 +89,8 @@
     <form id="loginform" action="/login" method="post" style="display:none">
         {{ csrf_field() }}
         <input id="token" name="token">
+        <input id="twitter_screen_name" name="twitter_screen_name">
+        <input id="twitter_profile_image_url_https" name="twitter_profile_image_url_https">
     </form>
   </body>
 </html>
