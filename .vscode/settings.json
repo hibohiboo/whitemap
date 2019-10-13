@@ -3,5 +3,6 @@
   "pasteImage.path": "${projectRoot}/docs/img/${currentFileNameWithoutExt}",
   "pasteImage.basePath": "${projectRoot}/docs",
   "pasteImage.forceUnixStyleSeparator": true,
-  "pasteImage.prefix": "./"
+  "pasteImage.prefix": "./",
+  "markdown-preview-enhanced.mermaidTheme": "dark"
 }

@@ -1,3 +1,23 @@
+## 認証イメージ
+
+```mermaid
+sequenceDiagram
+    ユーザー ->> Firebase: ログインしたい
+    Firebase ->> Twitter: ログインさせたい。
+    Twitter ->> Firebase: りょ。名前みせていいか確認したい。
+    Firebase ->> ユーザー: Twitterで認証よろ
+    ユーザー ->> Twitter: ログインしたい
+    Twitter ->> ユーザー: あなたの名前を見せるけどOK?
+    ユーザー ->> Twitter: いいよ。ログインしたいから。
+    Twitter ->> ユーザー: OK.トークン渡すね。
+    ユーザー ->> Firebase: Twitterのとこいってきました。
+    Firebase ->> ユーザー: 続きはこのトークンでLaravelで。
+    ユーザー ->> Laravel: ログインしたい
+    Laravel ->> Firebase: このトークン本物？
+    Firebase ->> Laravel: 本物だよ
+    Laravel ->> ユーザー: ログインしていいよ。これセッションキー
+```
+
 ## 認証
 
 秘密鍵の登録
