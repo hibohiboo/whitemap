@@ -10,7 +10,8 @@
         "emitDecoratorMetadata": true,
         "moduleResolution": "node",
         "target": "es6",
-        "lib": ["es2016", "dom"]
+        "lib": ["es2016", "dom"],
+        "allowJs": true
     },
     "include": ["resources/ts/**/*"]
 }

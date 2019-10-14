@@ -54,7 +54,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/common/app.js') }}"></script>
     @yield('scripts')
   </body>
 </html>
