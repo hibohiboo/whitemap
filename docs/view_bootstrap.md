@@ -64,6 +64,74 @@ npm i
 動いた！ こちらの原因は、 windows のファイルシステムだった模様。
 npm install しているときの一時ファイルが深すぎたり、とかだろうか。
 
+以下のコマンドで、取得したファイルのビルドなどを開始する。
+
+```
+npm run watch-poll
+```
+
+これによって作成されるバンドルファイルを、レイアウトファイルから読み込むなどする。
+
+```diff:larabel_docker/whitemap/resources/views/layouts/app.blade.php
+        </nav>
+        @yield('content')
+    </div>
+
+    <!-- Scripts -->
++    <script src="{{ asset('js/app.js') }}"></script>
+  </body>
+</html>
+
+```
+
+[ここまでのソース](https://github.com/hibohiboo/whitemap/tree/587ffa617f70f62079c7e67191cc9fcba2e07870/laravel_docker)
+
+## typescript の導入
+
+### インストール
+
+```
+npm install --save-dev ts-loader typescript
+```
+
+### 設定
+
+```json
+{
+  "compilerOptions": {
+    "outDir": "./built/",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "module": "es2015",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": ["es2016", "dom"]
+  },
+  "include": ["resources/ts/**/*"]
+}
+```
+
+- experimentalDecorators: decolater を使用可能になる。
+  - [参考](http://js.studio-kingdom.com/typescript/handbook/decorators)
+
+* mix に ts 使用を追加
+
+```diff:webpack.mix.js
++ mix.ts("resources/ts/welcome/index.ts", "public/js/welcome");
+```
+
+### 使用
+
+```diff:resources/view/welcome.blade.php
+@section('scripts')
++ <script src="{{ mix('js/welcome/index.js') }}"></script>
+@endsection
+```
+
 ## 参考
 
 [Laravel6.0 で Vue.js と Bootstrap を使う方法](https://www.webopixel.net/php/1554.html)
@@ -72,3 +140,4 @@ npm install しているときの一時ファイルが深すぎたり、とか�
 [laradock と nuxt で開発環境構築](https://qiita.com/aoarashi/items/535feeca48d15516d450)
 [Laravel5.5 インストールから Bootstrap4 を導入するまで](https://qiita.com/hondy12345/items/fef482c347b883acff84)
 [Laravel Mix](https://readouble.com/laravel/6.0/ja/mix.html)
+[typescript の利用](https://bsblog.casareal.co.jp/archives/1993)

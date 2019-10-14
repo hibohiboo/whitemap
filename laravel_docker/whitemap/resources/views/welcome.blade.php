@@ -22,3 +22,6 @@ main {
 </main>
 <!-- /.container -->
 @endsection
+@section('scripts')
+<script src="{{ mix('js/welcome/index.js') }}"></script>
+@endsection
