@@ -1,0 +1,5 @@
+{
+    "apiKey": "YOUR_APP_FIREBASE_KEY",
+    "projectId": "YOUR_APP_FIREBASE_ID",
+    "authDomain": "YOUR_APP_FIREBASE_DOMAIN"
+}

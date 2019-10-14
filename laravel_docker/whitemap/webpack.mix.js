@@ -17,3 +17,13 @@ mix.ts("resources/ts/common/app.ts", "public/js/common").sass(
 );
 
 mix.ts("resources/ts/welcome/index.ts", "public/js/welcome");
+mix.ts("resources/ts/home/index.ts", "public/js/home");
+mix.ts("resources/ts/login/index.ts", "public/js/login");
+mix.webpackConfig({
+    externals: {
+        jquery: "jQuery",
+        firebase: "firebase",
+        firebaseui: "firebaseui",
+        axios: "axios"
+    }
+});

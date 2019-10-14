@@ -132,6 +132,28 @@ npm install --save-dev ts-loader typescript
 @endsection
 ```
 
+### 外部モジュールの読み込み
+
+以下を追記。cdn から読み込みソースはくみこまないようにする。
+
+```js:webpack.mix.js
+mix.webpackConfig({
+  externals: {
+    jquery: "jQuery",
+    firebase: "firebase",
+    firebaseui: "firebaseui",
+    axios: "axios"
+  }
+});
+```
+
+使用。`import * as`か`import`かの読み込みかたの違いはライブラリの export の形式による。
+
+```
+import * as firebase from "firebase";
+import axios from "axios";
+```
+
 ## 参考
 
 [Laravel6.0 で Vue.js と Bootstrap を使う方法](https://www.webopixel.net/php/1554.html)
@@ -141,3 +163,4 @@ npm install --save-dev ts-loader typescript
 [Laravel5.5 インストールから Bootstrap4 を導入するまで](https://qiita.com/hondy12345/items/fef482c347b883acff84)
 [Laravel Mix](https://readouble.com/laravel/6.0/ja/mix.html)
 [typescript の利用](https://bsblog.casareal.co.jp/archives/1993)
+[typescript で import しなくても jquery が使えるようになっていたので、他の外部ライブラリとして chart.js を読み込んでみたメモ](https://qiita.com/hibohiboo/items/400a4206bbceb56e45e5)
