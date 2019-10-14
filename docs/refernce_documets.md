@@ -51,6 +51,8 @@
 [ファサードと DI テストについて](https://qiita.com/yousan/items/18dab4dbac4a27ce3662)
 [artisan command](https://blog.capilano-fw.com/?p=768)
 
+[laravel](https://laravel.com/docs/6.x)
+
 ## nginx
 
 [Laradock の Nginx を SSL 化する](https://qiita.com/osakana9114/items/48fb03e51e23dd02871c)
@@ -64,3 +66,7 @@
 
 [Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
 [Trouble deploying Laravel Passport with Google App Engine (GAE)](https://stackoverflow.com/questions/55485243/trouble-deploying-laravel-passport-with-google-app-engine-gae)
+
+## GCP
+
+[これから始める GCP（GCE）　安全に無料枠を使い倒せ](https://qiita.com/Brutus/items/22dfd31a681b67837a74)

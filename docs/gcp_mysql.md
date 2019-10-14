@@ -15,7 +15,23 @@
   - インスタンスと同じリージョンにすること
     - asia-northeast1 (東京))
   - ゾーンは任意のままでよい
-    ![](./img/gcp_mysql/2019-10-13-16-19-46.png)
+* 詳細設定
+  - ストレージを HDD にすると安い。これは後から変えられないので注意。
+    - SSD の半分くらい(SSD は 20 円/単位, HDD は 12 円/単位)
+  - CPU は一番性能の低いものをとりあえず。
+    - db-f1-micro
+  - フラグを入力。日本時間にする。
+    - `default_timezone` を `+09:00`にする
+
+![](./img/gcp_mysql/2019-10-13-16-19-46.png)
+
+![](./img/gcp_mysql/2019-10-14-10-13-57.png)
+
+時間の確認
+
+```
+show variables like '%time_zone%';
+```
 
 ### gcloud に接続
 
@@ -62,7 +78,7 @@ php artisan passport:install
 #### 接続ユーザの作成
 
 ```
-gcloud sql users create [USER_NAME] --host=[HOST] --instance=[INSTANCE_NAME] --password=[PASSWORD]
+gcloud sql users create [USER_NAME] --host='%' --instance=db01 --password=[PASSWORD]
 ```
 
 ### コンソールについて
@@ -190,3 +206,4 @@ mysql> show variables like 'character%';
 [Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
 [複数行の yaml](https://magazine.rubyist.net/articles/0009/0009-YAML.html#%E8%A4%87%E6%95%B0%E8%A1%8C%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97)
 [Laravel5.5 を Google App Engine で動かす](https://qiita.com/fullkawa/items/4d6b080385de5523835c)
+[Cloud SQL のタイムゾーンを変える](https://maretol.hatenablog.jp/entry/2017/04/03/141318)

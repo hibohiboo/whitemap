@@ -94,6 +94,7 @@ services:
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
+      - /var/www/node_modules # コンテナ内のnode_modulesを使用. npm install でエラーとなるため。
     extra_hosts:
       - "dockerhost:${DOCKER_HOST_IP}"
     ports:
