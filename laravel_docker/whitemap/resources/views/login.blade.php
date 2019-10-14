@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="ログインテストページ" />
-    <meta name="keywords" content="TRPG,開発,ツール" />
-    <meta name="robots" content="index" />
+@extends('layouts.app') 
+@section('title') ログイン @endsection
+@section('css')
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://www.gstatic.com/firebasejs/ui/4.2.0/firebase-ui-auth.css" rel="stylesheet"/>
+@endsection
 
-    <title>ログインテストページ</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://www.gstatic.com/firebasejs/ui/4.2.0/firebase-ui-auth.css"
-      rel="stylesheet"
-    />
+@section('head-scripts')
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.2.0/firebase-ui-auth__ja.js"></script>
@@ -72,25 +62,20 @@
       var ui = new firebaseui.auth.AuthUI(firebase.auth());
       ui.start('#firebaseui-auth-container', uiConfig);
     </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PBSJTDV');</script>
-    <!-- End Google Tag Manager -->
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBSJTDV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <h1>ログイン</h1>
-    <div id="firebaseui-auth-container"></div>
-    <form id="loginform" action="/login" method="post" style="display:none">
-        {{ csrf_field() }}
-        <input id="token" name="token">
-        <input id="twitter_screen_name" name="twitter_screen_name">
-        <input id="twitter_profile_image_url_https" name="twitter_profile_image_url_https">
-    </form>
-  </body>
-</html>
+@endsection
+
+@section('content')
+<main class="container">
+    <div class="starter-template">
+        <h1>ログイン</h1>
+        <div id="firebaseui-auth-container"></div>
+        <form id="loginform" action="/login" method="post" style="display:none">
+            {{ csrf_field() }}
+            <input id="token" name="token">
+            <input id="twitter_screen_name" name="twitter_screen_name">
+            <input id="twitter_profile_image_url_https" name="twitter_profile_image_url_https">
+        </form>
+    </div>
+</main>
+@endsection
+

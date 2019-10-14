@@ -23,7 +23,7 @@ Route::get('/agreement', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 Route::post('/login', 'MyAuth\LoginController@authenticate');
 Route::get('/home', function () {
     Log::info("Hello my log,");

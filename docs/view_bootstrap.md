@@ -71,3 +71,4 @@ npm install しているときの一時ファイルが深すぎたり、とか�
 [laravel/ui](https://github.com/laravel/ui)
 [laradock と nuxt で開発環境構築](https://qiita.com/aoarashi/items/535feeca48d15516d450)
 [Laravel5.5 インストールから Bootstrap4 を導入するまで](https://qiita.com/hondy12345/items/fef482c347b883acff84)
+[Laravel Mix](https://readouble.com/laravel/6.0/ja/mix.html)

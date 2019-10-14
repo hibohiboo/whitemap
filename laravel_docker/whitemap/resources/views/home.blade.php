@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
+@extends('layouts.app') 
+
+@section('title') マイページ @endsection
+
+@section('head-scripts')
+
 @if(Auth::check())
 <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
@@ -22,12 +21,12 @@ initApp = function() {
             const idToken = await user.getIdToken(true)
             const { data } = await axios.post('/api/auth', { idToken })
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-            const testElement = document.getElementById('test');
-            testElement.addEventListener('click', async function(){
-                var test = await axios.get('/api/hoge');
-                console.log(test)
-            });
-            testElement.style.display="block";
+            // const testElement = document.getElementById('test');
+            // testElement.addEventListener('click', async function(){
+            //     var test = await axios.get('/api/hoge');
+            //     console.log(test)
+            // });
+            // testElement.style.display="block";
         } else {
             console.log('signed out');
         }
@@ -40,17 +39,16 @@ window.addEventListener('load', function() {
 });
 </script>
 @endif
-        
-    </head>
-    <body>
-        こんにちは！ 
-@if(Auth::check())
-        {{\Auth::user()->name}} さん 
-        <button id="test" style="display:none">test</button>
-@else 
-  ゲストさん <br />
-  <a href="/login">ログイン</a>
-@endif
-        
-    </body>
-</html>
+@endsection
+
+@section('content')
+<main role="main" class="container">
+<div class="starter-template">
+    <h1>マイページ</h1>
+    @if(Auth::check())
+    @else 
+    こんにちは！  ゲストさん <br />
+    <a href="/login">ログイン</a>
+    @endif
+</div></main>
+@endsection

@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app') 
 
-        <title>利用規約</title>
+@section('title') 利用規約 @endsection
 
-    </head>
-    <body><div class="container">
+@section('content')
+<main role="main" class="container">
+<div class="starter-template">
     <h1 class="center">利用規約</h1>
     <div class="section">
         <h2>ユーザーの皆さまへ</h2>
@@ -78,6 +75,5 @@
         <h3>第12条　準拠法</h3>
         <p>本規約の執行可能性、解釈および有効性は、日本国法に従って判断されるものとします。</p>
     </div>
-</div>
-    </body>
-</html>
+</main>
+@endsection

@@ -10,9 +10,9 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable, HasApiTokens; // HasApiTokens を追加
-    public $firebase_uid;
-    public $twitter_screen_name;
-    public $twitter_profile_image_url_https;
+    // public $firebase_uid;
+    // public $twitter_screen_name;
+    // public $twitter_profile_image_url_https;
 
     /**
      * The attributes that are mass assignable.
