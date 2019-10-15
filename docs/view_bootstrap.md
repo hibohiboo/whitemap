@@ -166,3 +166,6 @@ import axios from "axios";
 [typescript で import しなくても jquery が使えるようになっていたので、他の外部ライブラリとして chart.js を読み込んでみたメモ](https://qiita.com/hibohiboo/items/400a4206bbceb56e45e5)
 [TSLint を使う TypeScript プロジェクトにコードフォーマッタ Prettier を導入する](https://qiita.com/akisx/items/4b90106c7faca4965852)
 [tslint5.7.0 ルール](http://neos21.hatenablog.com/entry/2017/10/25/080000)
+[popper.js in bootstrap 4 gives SyntaxError Unexpected token export](https://getbootstrap.com/docs/)
+[Bootstrap Introduction](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+[prettier](https://prettier.io/docs/en/options.html)
