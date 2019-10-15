@@ -5,9 +5,9 @@
   "pasteImage.forceUnixStyleSeparator": true,
   "pasteImage.prefix": "./",
   "markdown-preview-enhanced.mermaidTheme": "dark",
-  // "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "${projectRoot}/laravel_docker/whitemap/node_modules\\typescript\\lib",
   "tslint.autoFixOnSave": true,
-  // "tslint.configFile": "${projectRoot}/laravel_docker/whitemap/tslint.json",
+  "tslint.configFile": "${projectRoot}/laravel_docker/whitemap/tslint.json",
   "[typescript]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

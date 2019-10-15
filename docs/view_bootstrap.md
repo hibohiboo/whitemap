@@ -165,3 +165,4 @@ import axios from "axios";
 [typescript の利用](https://bsblog.casareal.co.jp/archives/1993)
 [typescript で import しなくても jquery が使えるようになっていたので、他の外部ライブラリとして chart.js を読み込んでみたメモ](https://qiita.com/hibohiboo/items/400a4206bbceb56e45e5)
 [TSLint を使う TypeScript プロジェクトにコードフォーマッタ Prettier を導入する](https://qiita.com/akisx/items/4b90106c7faca4965852)
+[tslint5.7.0 ルール](http://neos21.hatenablog.com/entry/2017/10/25/080000)

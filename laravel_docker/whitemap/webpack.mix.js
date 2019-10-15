@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,18 +11,21 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.ts("resources/ts/common/app.ts", "public/js/common")
-    .sass("resources/sass/app.scss", "public/css")
+mix.ts('resources/ts/common/app.ts', 'public/js/common')
+    .sass('resources/sass/app.scss', 'public/css')
     .version();
 
-mix.ts("resources/ts/welcome/index.ts", "public/js/welcome").version();
-mix.ts("resources/ts/home/index.ts", "public/js/home").version();
-mix.ts("resources/ts/login/index.ts", "public/js/login").version();
+mix.ts('resources/ts/welcome/index.ts', 'public/js/welcome').version();
+mix.ts('resources/ts/home/index.ts', 'public/js/home').version();
+mix.ts('resources/ts/login/index.ts', 'public/js/login').version();
 mix.webpackConfig({
     externals: {
-        jquery: "jQuery",
-        firebase: "firebase",
-        firebaseui: "firebaseui",
-        axios: "axios"
+        jquery: 'jQuery',
+        firebase: 'firebase',
+        firebaseui: 'firebaseui',
+        axios: 'axios',
+        lodash: 'lodash',
+        bootstrap: 'bootstrap',
+        popper: 'popper.js'
     }
 });
