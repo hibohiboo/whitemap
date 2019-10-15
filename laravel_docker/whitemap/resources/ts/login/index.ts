@@ -24,10 +24,10 @@ import * as firebaseui from 'firebaseui';
                 // console.log("twitterUser", twitterUser);
                 (async () => {
                     const idToken = await user.getIdToken(true);
-                    $('token').val(`${idToken}`);
-                    $('twitter_screen_name').val(`${twitter_screen_name}`);
-                    $('twitter_profile_image_url_https').val(`${twitter_profile_image_url_https}`);
-                    $('loginform').submit();
+                    $('#token').val(`${idToken}`);
+                    $('#twitter_screen_name').val(`${twitter_screen_name}`);
+                    $('#twitter_profile_image_url_https').val(`${twitter_profile_image_url_https}`);
+                    $('#loginform').submit();
                     return;
                 })();
 
