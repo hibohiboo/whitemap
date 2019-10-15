@@ -52,6 +52,7 @@
 [artisan command](https://blog.capilano-fw.com/?p=768)
 
 [laravel](https://laravel.com/docs/6.x)
+[Laravel を使っていないプロジェクトで Laravel Mix を導入した話](https://qiita.com/amderbar/items/33b5e98aba865d29e59d)
 
 ## nginx
 
