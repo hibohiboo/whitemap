@@ -1,0 +1,139 @@
+@startuml
+
+/'
+  図の中で目立たせたいエンティティに着色するための
+  色の名前（定数）を定義します。
+'/
+!define MAIN_ENTITY #E2EFDA-C6E0B4
+!define MAIN_ENTITY_2 #FCE4D6-F8CBAD
+
+/' 他の色も、用途が分りやすいように名前をつけます。 '/
+!define METAL #F2F2F2-D9D9D9
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+/'
+  デフォルトのスタイルを設定します。
+  この場合の指定は class です。entity ではエラーになります。
+'/
+skinparam class {
+    BackgroundColor METAL
+    BcharactersColor Black
+    ArrowColor Black
+}
+
+package "Firestore" as firestore <<Database>> {
+    entity "キャラクタマスタ" as fb_characters <<M,MASTER_MARK_COLOR>> {
+        + キャラクターID [PK]
+        --
+        名前
+        種族
+        漂流理由
+        見た目
+        能力値
+        _能力値1
+        _能力値2...
+        余裕上限
+        所持限界
+        スキル
+        _スキル_1...n
+        状態
+        _状態_1...n
+        タグ
+        _タグ_1...n
+        持物
+        _持物_1...n
+        作成日時
+    }
+    entity "タグマスタ" as fb_tags <<M,MASTER_MARK_COLOR>> {
+        + タグID [PK]
+        --
+        名前
+        値
+        表示フラグ
+        作成者uid
+        作成日時
+    }
+    entity "ユーザマスタ" as fb_users <<M,MASTER_MARK_COLOR>> {
+        + ユーザID [PK]
+        --
+        名前
+        uid
+        screen_name
+        profile_image_url
+        クーポン
+        _クーポン1...n
+        作成日時
+    }
+}
+
+package "MySQL" as mysql <<Database>> {
+    /'
+      マスターテーブルを M、トランザクションを T などと安直にしていますが、
+      チーム内でルールを決めればなんでも良いと思います。交差テーブルは "I" とか。
+      角丸四角形が描けない代替です。
+      １文字なら "主" とか "従" とか日本語でも OK だったのが受ける。
+     '/
+    entity "キャラクタマスタ" as characters <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
+        + キャラクターID [PK]
+        --
+        # ユーザID [FK] 作成者
+        # クーポンID [FK]
+        # 種族ID [FK]
+        名前
+        キャラクタアイコンURL
+        使用経験点
+        作成日時
+        更新日時
+    }
+
+    entity "ユーザマスタ" as users <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
+        + ユーザID [PK]
+        --
+        # uid [FK]
+        # クーポンID [FK]
+        名前
+        screen_name
+        profile_image_url
+        ポイント
+        作成日時
+        更新日時
+    }
+
+    entity "ポイント使用履歴" as user_point_history <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + ユーザクーポンID [PK]
+        + 作成日時 [PK]
+        --
+        備考
+    }
+
+    entity "ユーザクーポン" as user_coupons <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + ユーザクーポンID [PK]
+        # ユーザID [FK]
+        # クーポンID [FK]
+        有効フラグ
+    }
+
+    entity "クーポンマスタ" as coupons <<M,MASTER_MARK_COLOR>> {
+        + クーポンID [PK]
+        --
+        クーポン種別
+        名前
+        ポイント
+        表示フラグ
+        利用期限
+        作成日時
+        更新日時
+    }
+}
+
+fb_characters       ||-ri-||     characters
+fb_users       ||-ri-||     users
+users          ||-ri-o{     user_coupons
+coupons  ||-le-o{ user_coupons
+user_coupons    }o-do-||      user_point_history
+characters ||--||  user_coupons
+
+note bottom of fb_characters : 別プロジェクト\nDB-Linkで参照する
+
+@enduml

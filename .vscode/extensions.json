@@ -3,13 +3,7 @@
   // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 
   // List of extensions which should be recommended for users of this workspace.
-  "recommendations": [
-    "felixfbecker.php-debug",
-    "felixfbecker.php-intellisense",
-    "mushan.vscode-paste-image",
-    "bierner.markdown-mermaid",
-    "shd101wyy.markdown-preview-enhanced"
-  ],
+  "recommendations": ["felixfbecker.php-debug", "felixfbecker.php-intellisense", "mushan.vscode-paste-image", "bierner.markdown-mermaid", "shd101wyy.markdown-preview-enhanced", "jebbs.plantuml"],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
 }
