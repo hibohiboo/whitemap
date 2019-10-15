@@ -139,10 +139,10 @@ npm install --save-dev ts-loader typescript
 ```js:webpack.mix.js
 mix.webpackConfig({
   externals: {
-    jquery: "jQuery",
-    firebase: "firebase",
-    firebaseui: "firebaseui",
-    axios: "axios"
+    jquery: 'jQuery',
+    firebase: 'firebase',
+    firebaseui: 'firebaseui',
+    axios: 'axios'
   }
 });
 ```
@@ -164,3 +164,4 @@ import axios from "axios";
 [Laravel Mix](https://readouble.com/laravel/6.0/ja/mix.html)
 [typescript の利用](https://bsblog.casareal.co.jp/archives/1993)
 [typescript で import しなくても jquery が使えるようになっていたので、他の外部ライブラリとして chart.js を読み込んでみたメモ](https://qiita.com/hibohiboo/items/400a4206bbceb56e45e5)
+[TSLint を使う TypeScript プロジェクトにコードフォーマッタ Prettier を導入する](https://qiita.com/akisx/items/4b90106c7faca4965852)

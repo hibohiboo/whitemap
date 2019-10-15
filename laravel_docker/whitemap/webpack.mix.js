@@ -11,14 +11,13 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.ts("resources/ts/common/app.ts", "public/js/common").sass(
-    "resources/sass/app.scss",
-    "public/css"
-);
+mix.ts("resources/ts/common/app.ts", "public/js/common")
+    .sass("resources/sass/app.scss", "public/css")
+    .version();
 
-mix.ts("resources/ts/welcome/index.ts", "public/js/welcome");
-mix.ts("resources/ts/home/index.ts", "public/js/home");
-mix.ts("resources/ts/login/index.ts", "public/js/login");
+mix.ts("resources/ts/welcome/index.ts", "public/js/welcome").version();
+mix.ts("resources/ts/home/index.ts", "public/js/home").version();
+mix.ts("resources/ts/login/index.ts", "public/js/login").version();
 mix.webpackConfig({
     externals: {
         jquery: "jQuery",

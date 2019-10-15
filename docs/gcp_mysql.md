@@ -49,7 +49,7 @@ gcloud sql instances describe インスタンス名 | grep connectionName
 実行した後、Enter を押さないと止まったように見える。
 
 ```
-cloud_sql_proxy -instances=whitemap-255523:asia-northeast1:db01=tcp:3306 &
+cloud_sql_proxy -instances=whitemap-255523:asia-northeast1:db02=tcp:3306 &
 ```
 
 #### MySQL に接続してインスタンスを作る
