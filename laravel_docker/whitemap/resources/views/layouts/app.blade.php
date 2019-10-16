@@ -32,27 +32,38 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <!-- Navbar Left -->
-                <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContentLeft">
-                </div>
-                <!-- Navbar Right -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContentRight">
-                    @guest
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>
-                        </ul>
-                    @else
-                        <div class="user-icon"><img src="{{\Auth::user()->twitter_profile_image_url_https}}"></div>
-                    @endguest
-                </div>
+                @guest
+                @else
+                    <a class="navbar-brand user-icon" href="{{ url('/') }}"><i class="user-icon"><img src="{{\Auth::user()->twitter_profile_image_url_https}}"></i></a>
+                @endguest
+            <!-- <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {{str_replace(url('/'),'',url()->current()) === '/'     ? 'active' : ''}}"><a class="nav-link" href="{{ url('/') }}">トップ</span></a></li>
+                    <li class="nav-item {{str_replace(url('/'),'',url()->current()) === '/home' ? 'active' : ''}}"><a class="nav-link" href="{{ url('/home') }}">マイページ</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        サイト情報
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/agreement">利用規約</a>
+                            <a class="dropdown-item" href="/privacy-policy">プライバシーポリシー</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://github.com/hibohiboo/whitemap">github</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="my-2 my-lg-0">
+                @guest
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>
+                    </ul>
+                @else
+                @endguest
             </div>
         </nav>
         @yield('content')
