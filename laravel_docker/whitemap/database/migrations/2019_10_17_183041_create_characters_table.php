@@ -15,19 +15,20 @@ class CreateCharactersTable extends Migration
     {
         // キャラクター
         Schema::create('characters', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id');
             $table->string('name');
-            $table->integer('race_id');
-            $table->string('firebase_character_id');
-            $table->integer('user_id');
+            $table->integer('user_coupon_id')->unsigned();;
+            $table->integer('race_id')->unsigned(); // 種族
+            $table->integer('user_id')->unsigned(); // 作成者
+            $table->string('character_icon_url');
+            $table->integer('used_point');
             $table->timestamps();
+
+            $table->primary('id');
+            $table->foreign('race_id')->references('id')->on('race');
+            $table->foreign('user_id')->references('id')->on('users');
         });
-        // 種族
-        Schema::create('race', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+
     }
 
     /**

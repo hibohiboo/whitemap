@@ -1,0 +1,119 @@
+@startuml
+/'
+  図の中で目立たせたいエンティティに着色するための
+  色の名前（定数）を定義します。
+'/
+!define MAIN_ENTITY #E2EFDA-C6E0B4
+!define MAIN_ENTITY_2 #FCE4D6-F8CBAD
+
+/' 他の色も、用途が分りやすいように名前をつけます。 '/
+!define METAL #F2F2F2-D9D9D9
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+/'
+  デフォルトのスタイルを設定します。
+  この場合の指定は class です。entity ではエラーになります。
+'/
+skinparam class {
+    BackgroundColor METAL
+    BcharactersColor Black
+    ArrowColor Black
+}
+
+
+package "MySQL" as mysql <<Database>> {
+    /'
+      マスターテーブルを M、トランザクションを T などと安直にしていますが、
+      チーム内でルールを決めればなんでも良いと思います。交差テーブルは "I" とか。
+      角丸四角形が描けない代替です。
+     '/
+
+    entity "種族マスタ" as race <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * 種族ID [PK]
+        --
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "キャラクタマスタ" as characters <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * キャラクターID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * クーポンID [FK]
+        * 種族ID [FK]
+        * 名前
+        キャラクタアイコンURL
+        * 使用経験点
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "タグマスタ" as tags <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * タグID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * 名前
+        * 作成日時
+        * 更新日時
+    }
+    entity "アイテムマスタ" as items <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * アイテムID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * 名前
+        * 詳細
+        * 作成日時
+        * 更新日時
+    }
+    entity "スキルマスタ" as skills <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * アイテムID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * 名前
+        * 詳細
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "キャラクタマスタ" as characters <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * キャラクターID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * クーポンID [FK]
+        * 種族ID [FK]
+        * 名前
+        キャラクタアイコンURL
+        * 使用経験点
+        * 作成日時
+        * 更新日時
+    }
+    entity "種族タグ" as race_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * 種族ID [PK]
+        * タグID [PK]
+    }
+    entity "スキルタグ" as skills_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * スキルID [PK]
+        * タグID [PK]
+    }
+    entity "アイテムタグ" as items_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * アイテムID [PK]
+        * タグID [PK]
+    }
+    entity "キャラクタタグ" as characters_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * キャラクタID [PK]
+        * タグID [PK]
+    }
+}
+
+tags ||-up-o{ skills_tags
+tags ||-up-o{ items_tags
+tags ||-up-o{ characters_tags
+tags ||-up-o{ race_tags
+
+skills ||--o{ skills_tags
+items ||--o{ items_tags
+characters ||--o{ characters_tags
+race ||--o{ race_tags
+
+@enduml

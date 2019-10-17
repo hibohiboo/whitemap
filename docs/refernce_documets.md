@@ -68,6 +68,10 @@
 [Laravel Passport の暗号キー情報を環境変数(.env ファイル)で保持する方法](https://qiita.com/hypermkt/items/6ad0c9535dd1b22ca3be)
 [Trouble deploying Laravel Passport with Google App Engine (GAE)](https://stackoverflow.com/questions/55485243/trouble-deploying-laravel-passport-with-google-app-engine-gae)
 
+## laravel db
+
+[【メモ】【Laravel】外部キー制約付き Migrate がさっぱり動かないときのチェック・ポイント（Mysql）](https://qiita.com/0w0/items/4a9cb7d27794bfb93d46)
+
 ## GCP
 
 [これから始める GCP（GCE）　安全に無料枠を使い倒せ](https://qiita.com/Brutus/items/22dfd31a681b67837a74)

@@ -1,6 +1,20 @@
 @startuml
 
 /'
+  * NOT NULL
+
+  --o{ 0以上
+  --|{ 1以上
+  --|| 1
+  --o| 0か1
+
+  -ri- right
+  -le- left
+  -do- down
+  -up- up
+'/
+
+/'
   図の中で目立たせたいエンティティに着色するための
   色の名前（定数）を定義します。
 '/
@@ -30,56 +44,67 @@ package "MySQL" as mysql <<Database>> {
       角丸四角形が描けない代替です。
       １文字なら "主" とか "従" とか日本語でも OK だったのが受ける。
      '/
-    entity "キャラクタマスタ" as characters <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
-        + キャラクターID [PK]
+    entity "キャラクタマスタ" as characters <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * キャラクターID [PK]
         --
-        # ユーザID [FK] 作成者
-        # クーポンID [FK]
-        # 種族ID [FK]
-        名前
+        * ユーザID [FK] 作成者
+        * ユーザクーポンID [FK]
+        * 種族ID [FK]
+        * 名前
         キャラクタアイコンURL
-        使用経験点
-        作成日時
-        更新日時
+        * 使用経験点
+        * 作成日時
+        * 更新日時
     }
 
-    entity "ユーザマスタ" as users <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
-        + ユーザID [PK]
+    entity "ユーザマスタ" as users <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * ユーザID [PK]
         --
-        # uid [FK]
-        # クーポンID [FK]
-        名前
+        * uid [FK]
+        * 名前
         screen_name
         profile_image_url
-        ポイント
-        作成日時
-        更新日時
+        * ポイント
+        * 作成日時
+        * 更新日時
     }
 
     entity "ポイント使用履歴" as user_point_history <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
-        + ユーザクーポンID [PK]
-        + 作成日時 [PK]
+        * ユーザクーポンID [PK]
+        * 作成日時 [PK]
         --
+        * 種別 / 1:ポイント取得, 2:ポイント使用
         備考
     }
 
     entity "ユーザクーポン" as user_coupons <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
-        + ユーザクーポンID [PK]
-        # ユーザID [FK]
-        # クーポンID [FK]
-        有効フラグ
+        * ユーザクーポンID [PK]
+        --
+        * ユーザID [FK]
+        * クーポンID [FK]
+        * 有効フラグ
+        * 作成日時
+        * 更新日時
     }
 
     entity "クーポンマスタ" as coupons <<M,MASTER_MARK_COLOR>> {
-        + クーポンID [PK]
+        * クーポンID [PK]
         --
-        クーポン種別
-        名前
-        ポイント
-        表示フラグ
-        利用期限
-        作成日時
-        更新日時
+        * クーポン種別 [FK]
+        * 名前
+        * ポイント
+        * 表示フラグ
+        * 利用期限
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "クーポン種別" as couponsTypes <<M,MASTER_MARK_COLOR>> {
+        * クーポン種別ID [PK]
+        --
+        * 名前
+        * 作成日時
+        * 更新日時
     }
 }
 
@@ -87,8 +112,8 @@ package "MySQL" as mysql <<Database>> {
 users          ||-ri-o{     user_coupons
 coupons  ||-le-o{ user_coupons
 user_coupons    }o-do-||      user_point_history
-characters ||--||  user_coupons
-
+characters |o--||  user_coupons
+couponsTypes ||--o{   coupons
 
 @enduml
 

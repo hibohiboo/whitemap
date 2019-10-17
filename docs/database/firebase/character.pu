@@ -1,0 +1,147 @@
+@startuml
+/'
+  * NOT NULL
+
+  --o{ 0以上
+  --|{ 1以上
+  --|| 1
+  --o| 0か1
+  
+'/
+package "FireStore" as fs {
+  class FireStoreRoot {
+    __Properties__
+    __Objects__
+    * Characters
+  }
+}
+package "ユーザー" as user {
+  class Users {
+    __Properties__
+    __Objects__
+    UserRoot
+  }
+  class UserRoot {
+    __Properties__
+    * ユーザID [PK]
+    __Objects__
+    * UserProperties
+  }
+  class UserProperties {
+    __Properties__
+      * uid [FK]
+      * 名前
+      screen_name
+      profile_image_url
+      * ポイント
+      * 作成日時
+      * 更新日時
+    __Objects__
+  }
+}
+
+package "タグ" as tag {
+  class Tags {
+    __Properties__
+    __Objects__
+    TagRoot
+  }
+  class TagRoot {
+    __Properties__
+    * タグID [PK]
+    __Objects__
+    * TagProperties
+  }
+  class TagProperties {
+    __Properties__
+    * 作成者ID[FK]
+    * 値
+    * 作成日時
+    * 更新日時
+    __Objects__
+  }
+}
+
+package "キャラクター" as chara {
+  class Characters {
+    __Properties__
+    __Objects__
+    CharacterRoot
+  }
+  class CharacterRoot {
+    __Properties__
+    * キャラクターID [PK]
+    __Objects__
+
+  }
+  class CharacterProperties {
+    __Properties__
+    * uid [FK]
+    __Objects__
+    * 名前
+    * 種族
+    * 漂流理由
+    * 使用経験点
+    * 作成日時
+    * 更新日時
+     メモ
+     CharacterImages
+     Tags
+  }
+    class CharacterTags {
+    __Properties__
+    __Objects__
+    CharacterTagsRoot
+  }
+      class CharacterTagRoot {
+      __Properties__
+      * キャラクタータグID [PK]
+      __Objects__
+      * CharacterTagProperties
+    }
+    class CharacterTagProperties {
+      __Properties__
+      * タグID[FK]
+      * 値
+      __Objects__
+    }
+  class CharacterImages {
+    __Properties__
+    __Objects__
+    CharacterImageRoot
+  }
+  class CharacterImageRoot {
+    __Properties__
+    * キャラクタ画像ID [FK]
+    __Objects__
+    CharacterImageProperties
+  }
+  class CharacterImageProperties {
+    __Properties__
+    __Objects__
+    * 画像URL
+    作者サイト名
+    作者サイトURL
+  }
+}
+Characters ||--o{  CharacterRoot
+CharacterRoot ||--|| CharacterProperties 
+CharacterProperties ||--o{ CharacterImages
+CharacterImages ||--o{ CharacterImageRoot
+CharacterImageRoot ||-|| CharacterImageProperties
+CharacterProperties ||--o{ CharacterTags
+CharacterTags ||--o{ CharacterTagRoot
+CharacterTagRoot ||-|| CharacterTagProperties
+
+
+Users ||--o{  UserRoot
+UserRoot ||--|| UserProperties 
+
+Tags ||--o{  TagRoot
+TagRoot ||--|| TagProperties 
+
+FireStoreRoot ||--|| Characters
+FireStoreRoot ||--|| Users
+FireStoreRoot ||--|| Tags
+
+@enduml
