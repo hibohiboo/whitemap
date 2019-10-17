@@ -15,52 +15,6 @@ package "FireStore" as fs {
     * Characters
   }
 }
-package "ユーザー" as user {
-  class Users {
-    __Properties__
-    __Objects__
-    UserRoot
-  }
-  class UserRoot {
-    __Properties__
-    * ユーザID [PK]
-    __Objects__
-    * UserProperties
-  }
-  class UserProperties {
-    __Properties__
-      * uid [FK]
-      * 名前
-      screen_name
-      profile_image_url
-      * ポイント
-      * 作成日時
-      * 更新日時
-    __Objects__
-  }
-}
-
-package "タグ" as tag {
-  class Tags {
-    __Properties__
-    __Objects__
-    TagRoot
-  }
-  class TagRoot {
-    __Properties__
-    * タグID [PK]
-    __Objects__
-    * TagProperties
-  }
-  class TagProperties {
-    __Properties__
-    * 作成者ID[FK]
-    * 値
-    * 作成日時
-    * 更新日時
-    __Objects__
-  }
-}
 
 package "キャラクター" as chara {
   class Characters {
@@ -77,34 +31,39 @@ package "キャラクター" as chara {
   class CharacterProperties {
     __Properties__
     * uid [FK]
-    __Objects__
     * 名前
     * 種族
     * 漂流理由
     * 使用経験点
+    * 余裕上限
+    * 所持限界
+    年齢
+    性別
+    見た目
+    メモ
     * 作成日時
     * 更新日時
-     メモ
-     CharacterImages
-     Tags
-  }
-    class CharacterTags {
-    __Properties__
     __Objects__
-    CharacterTagsRoot
+    CharacterImages
+    CharacterTags
   }
-      class CharacterTagRoot {
-      __Properties__
-      * キャラクタータグID [PK]
-      __Objects__
-      * CharacterTagProperties
-    }
-    class CharacterTagProperties {
-      __Properties__
-      * タグID[FK]
-      * 値
-      __Objects__
-    }
+  class CharacterTags {
+  __Properties__
+  __Objects__
+  CharacterTagsRoot
+  }
+  class CharacterTagRoot {
+    __Properties__
+    * キャラクタータグID [PK]
+    __Objects__
+    * CharacterTagProperties
+  }
+  class CharacterTagProperties {
+    __Properties__
+    * タグID[FK]
+    * 値
+    __Objects__
+  }
   class CharacterImages {
     __Properties__
     __Objects__
@@ -123,25 +82,39 @@ package "キャラクター" as chara {
     作者サイト名
     作者サイトURL
   }
+  class CharacterImageTags {
+  __Properties__
+  __Objects__
+  CharacterImageTagsRoot
+  }
+  class CharacterImageTagRoot {
+    __Properties__
+    * キャラクター画像タグID [PK]
+    __Objects__
+    * CharacterImageTagProperties
+  }
+  class CharacterImageTagProperties {
+    __Properties__
+    * タグID[FK]
+    * 値
+    __Objects__
+  }
+
 }
 Characters ||--o{  CharacterRoot
 CharacterRoot ||--|| CharacterProperties 
 CharacterProperties ||--o{ CharacterImages
 CharacterImages ||--o{ CharacterImageRoot
 CharacterImageRoot ||-|| CharacterImageProperties
+CharacterImageProperties||--o{ CharacterImageTags
+CharacterImageTags ||--o{ CharacterImageTagRoot
+CharacterImageTagRoot ||-|| CharacterImageTagProperties
+
 CharacterProperties ||--o{ CharacterTags
 CharacterTags ||--o{ CharacterTagRoot
 CharacterTagRoot ||-|| CharacterTagProperties
 
-
-Users ||--o{  UserRoot
-UserRoot ||--|| UserProperties 
-
-Tags ||--o{  TagRoot
-TagRoot ||--|| TagProperties 
-
 FireStoreRoot ||--|| Characters
-FireStoreRoot ||--|| Users
-FireStoreRoot ||--|| Tags
+
 
 @enduml

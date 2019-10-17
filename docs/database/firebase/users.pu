@@ -1,0 +1,49 @@
+@startuml
+/'
+  * NOT NULL
+
+  --o{ 0以上
+  --|{ 1以上
+  --|| 1
+  --o| 0か1
+  
+'/
+package "FireStore" as fs {
+  class FireStoreRoot {
+    __Properties__
+    __Objects__
+    * Users
+  }
+}
+package "ユーザー" as user {
+  class Users {
+    __Properties__
+    __Objects__
+    UserRoot
+  }
+  class UserRoot {
+    __Properties__
+    * ユーザID [PK]
+    __Objects__
+    * UserProperties
+  }
+  class UserProperties {
+    __Properties__
+      * uid [FK]
+      * 名前
+      screen_name
+      profile_image_url
+      * ポイント
+      * 作成日時
+      * 更新日時
+    __Objects__
+  }
+}
+
+
+Users ||--o{  UserRoot
+UserRoot ||--|| UserProperties 
+
+FireStoreRoot ||--|| Users
+
+@enduml

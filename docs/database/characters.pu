@@ -167,14 +167,28 @@ skinparam class {
 }
 
 
-package "MySQL" as mysql <<Database>> {
-    /'
-      マスターテーブルを M、トランザクションを T などと安直にしていますが、
-      チーム内でルールを決めればなんでも良いと思います。交差テーブルは "I" とか。
-      角丸四角形が描けない代替です。
-      １文字なら "主" とか "従" とか日本語でも OK だったのが受ける。
-     '/
-    entity "キャラクタマスタ" as characters <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
+
+package "キャラクター" as character <<Database>> {
+    entity "種族マスタ" as race <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * 種族ID [PK]
+        --
+        * 画像名
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "画像マスタ" as images <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * 画像ID [PK]
+        --
+        * 画像URL
+        名前
+        作者名
+        作者サイトURL
+        * 作成日時
+        * 更新日時
+    }
+
+    entity "キャラクタマスタ" as characters <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
         * キャラクターID [PK]
         --
         * ユーザID [FK] 作成者
@@ -187,28 +201,65 @@ package "MySQL" as mysql <<Database>> {
         * 更新日時
     }
 
-
-
-
-    entity "ユーザクーポン" as user_coupons <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
-        * ユーザクーポンID [PK]
-        --
-        * ユーザID [FK]
-        * クーポンID [FK]
-        * 有効フラグ
-        * 作成日時
-        * 更新日時
-    }
-    entity "タグマスタ" as tags <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {
+    entity "タグマスタ" as tags <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
         * タグID [PK]
         --
         * ユーザID [FK] 作成者
         * 名前
+        * 値
+        * 表示区分[default 1] / 0:非表示,1:表示
         * 作成日時
         * 更新日時
     }
 
+    entity "アイテムマスタ" as items <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * アイテムID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * 名前
+        * 詳細
+        * 作成日時
+        * 更新日時
+    }
+    entity "スキルマスタ" as skills <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        * スキルID [PK]
+        --
+        * ユーザID [FK] 作成者
+        * 名前
+        * アクションポイント
+        * タイミング
+        * 射程
+        * 最大射程
+        * 対象
+        * 効果
+        詳細
+        * 作成日時
+        * 更新日時
+    }
+
+
+    entity "種族タグ" as race_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * 種族ID [PK]
+        * タグID [PK]
+    }
+    entity "画像タグ" as images_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * 画像ID [PK]
+        * タグID [PK]
+    }
+    entity "スキルタグ" as skills_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * スキルID [PK]
+        * タグID [PK]
+    }
+    entity "アイテムタグ" as items_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * アイテムID [PK]
+        * タグID [PK]
+    }
+    entity "キャラクタタグ" as characters_tags <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        * キャラクタID [PK]
+        * タグID [PK]
+    }
 }
+
 
 
 

@@ -45,7 +45,7 @@ package "MySQL" as mysql <<Database>> {
         --
         * ユーザID [FK]
         * クーポンID [FK]
-        * 有効フラグ
+        * 表示フラグ[default 1] / 0:非表示,1:表示
         * 作成日時
         * 更新日時
     }

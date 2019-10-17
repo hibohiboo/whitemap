@@ -73,7 +73,7 @@ package "MySQL" as mysql <<Database>> {
         * ユーザクーポンID [PK]
         * 作成日時 [PK]
         --
-        * 種別 / 1:ポイント取得, 2:ポイント使用
+        * 種別 / 1:取得, 2:使用
         備考
     }
 
@@ -82,12 +82,12 @@ package "MySQL" as mysql <<Database>> {
         --
         * ユーザID [FK]
         * クーポンID [FK]
-        * 有効フラグ
         * 作成日時
         * 更新日時
+        削除日時/論理削除
     }
 
-    entity "クーポンマスタ" as coupons <<M,MASTER_MARK_COLOR>> {
+    entity "クーポンマスタ" as coupons <<M,MASTER_MARK_COLOR>>MAIN_ENTITY {
         * クーポンID [PK]
         --
         * クーポン種別 [FK]
@@ -97,9 +97,10 @@ package "MySQL" as mysql <<Database>> {
         * 利用期限
         * 作成日時
         * 更新日時
+        削除日時/論理削除
     }
 
-    entity "クーポン種別" as couponsTypes <<M,MASTER_MARK_COLOR>> {
+    entity "クーポン種別" as couponsTypes <<M,MASTER_MARK_COLOR>>MAIN_ENTITY{
         * クーポン種別ID [PK]
         --
         * 名前
