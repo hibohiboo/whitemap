@@ -64,57 +64,59 @@ package "MySQL" as mysql <<Database>> {
         * 名前
         screen_name
         profile_image_url
-        * ポイント
+        ' * ポイント
         * 作成日時
         * 更新日時
     }
 
-    entity "ポイント使用履歴" as user_point_history <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
-        * ユーザクーポンID [PK]
-        * 作成日時 [PK]
-        --
-        * 種別 / 1:取得, 2:使用
-        備考
-    }
+    ' entity "ポイント履歴" as user_point_history <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+    '     * ユーザクーポンID [PK]
+    '     * 作成日時 [PK]
+    '     --
+    '     備考
+    ' }
 
     entity "ユーザクーポン" as user_coupons <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
         * ユーザクーポンID [PK]
         --
-        * ユーザID [FK]
+        * ユーザID [FK] 受取
+        * ユーザID [FK] 発行
         * クーポンID [FK]
-        * 作成日時
-        * 更新日時
-        削除日時/論理削除
-    }
-
-    entity "クーポンマスタ" as coupons <<M,MASTER_MARK_COLOR>>MAIN_ENTITY {
-        * クーポンID [PK]
-        --
-        * クーポン種別 [FK]
-        * 名前
-        * ポイント
-        * 表示フラグ
         * 利用期限
         * 作成日時
         * 更新日時
         削除日時/論理削除
     }
 
-    entity "クーポン種別" as couponsTypes <<M,MASTER_MARK_COLOR>>MAIN_ENTITY{
-        * クーポン種別ID [PK]
+    entity "クーポン種別" as coupons <<M,MASTER_MARK_COLOR>>MAIN_ENTITY {
+        * クーポンID [PK]
         --
+        ' * クーポン種別 [FK]
+        * 種別 / 1:取得, 2:使用
         * 名前
+        * ポイント
+        * 表示フラグ
+        ' * 利用期限
         * 作成日時
         * 更新日時
+        ' 削除日時/論理削除
     }
+
+    ' entity "クーポン種別" as couponsTypes <<M,MASTER_MARK_COLOR>>MAIN_ENTITY{
+    '     * クーポン種別ID [PK]
+    '     --
+    '     * 名前
+    '     * 作成日時
+    '     * 更新日時
+    ' }
 }
 
 
 users          ||-ri-o{     user_coupons
 coupons  ||-le-o{ user_coupons
-user_coupons    }o-do-||      user_point_history
+' user_coupons    }o-do-||      user_point_history
 characters |o--||  user_coupons
-couponsTypes ||--o{   coupons
+' couponsTypes ||--o{   coupons
 
 @enduml
 
