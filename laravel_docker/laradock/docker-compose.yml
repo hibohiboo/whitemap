@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 networks:
   frontend:
@@ -14,6 +14,10 @@ volumes:
   redis:
     driver: ${VOLUMES_DRIVER}
   adminer:
+    driver: ${VOLUMES_DRIVER}
+  sonarqube:
+    driver: ${VOLUMES_DRIVER}
+  postgres:
     driver: ${VOLUMES_DRIVER}
 
 services:
@@ -96,9 +100,9 @@ services:
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
       - /var/www/node_modules # コンテナ内のnode_modulesを使用. npm install でエラーとなるため。
     extra_hosts:
-      - "dockerhost:${DOCKER_HOST_IP}"
+      - 'dockerhost:${DOCKER_HOST_IP}'
     ports:
-      - "${WORKSPACE_SSH_PORT}:22"
+      - '${WORKSPACE_SSH_PORT}:22'
     tty: true
     environment:
       - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
@@ -166,9 +170,9 @@ services:
       - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
     expose:
-      - "9000"
+      - '9000'
     extra_hosts:
-      - "dockerhost:${DOCKER_HOST_IP}"
+      - 'dockerhost:${DOCKER_HOST_IP}'
     environment:
       - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
       - DOCKER_HOST=tcp://docker-in-docker:2375
@@ -198,8 +202,8 @@ services:
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
     ports:
-      - "${NGINX_HOST_HTTP_PORT}:80"
-      - "${NGINX_HOST_HTTPS_PORT}:443"
+      - '${NGINX_HOST_HTTP_PORT}:80'
+      - '${NGINX_HOST_HTTPS_PORT}:443'
     depends_on:
       - php-fpm
     networks:
@@ -223,7 +227,7 @@ services:
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
     ports:
-      - "${MYSQL_PORT}:3306"
+      - '${MYSQL_PORT}:3306'
     networks:
       - backend
 
@@ -233,7 +237,7 @@ services:
     volumes:
       - ${DATA_PATH_HOST}/redis:/data
     ports:
-      - "${REDIS_PORT}:6379"
+      - '${REDIS_PORT}:6379'
     networks:
       - backend
 
@@ -244,7 +248,7 @@ services:
       args:
         - INSTALL_MSSQL=${ADM_INSTALL_MSSQL}
     ports:
-      - "${ADM_PORT}:8080"
+      - '${ADM_PORT}:8080'
     depends_on:
       - php-fpm
     networks:
@@ -255,7 +259,7 @@ services:
   selenium:
     build: ./selenium
     ports:
-      - "${SELENIUM_PORT}:4444"
+      - '${SELENIUM_PORT}:4444'
     volumes:
       - /dev/shm:/dev/shm
     networks:
@@ -269,5 +273,57 @@ services:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     expose:
       - 2375
+    networks:
+      - backend
+  ### SONARQUBE ################################################
+  sonarqube:
+    build:
+      context: ./sonarqube
+    hostname: '${SONARQUBE_HOSTNAME}'
+    volumes:
+      - ${DATA_PATH_HOST}/sonarqube/conf:/opt/sonarqube/conf
+      - ${DATA_PATH_HOST}/sonarqube/data:/opt/sonarqube/data
+      - ${DATA_PATH_HOST}/sonarqube/logs:/opt/sonarqube/logs
+      - ${DATA_PATH_HOST}/sonarqube/extensions:/opt/sonarqube/extensions
+      - ${DATA_PATH_HOST}/sonarqube/plugins:/opt/sonarqube/lib/bundled-plugins
+    ports:
+      - ${SONARQUBE_PORT}:9000
+    depends_on:
+      - postgres
+    environment:
+      - sonar.jdbc.username=${SONARQUBE_POSTGRES_USER}
+      - sonar.jdbc.password=${SONARQUBE_POSTGRES_PASSWORD}
+      - sonar.jdbc.url=jdbc:postgresql://${SONARQUBE_POSTGRES_HOST}:5432/${SONARQUBE_POSTGRES_DB}
+    networks:
+      - backend
+      - frontend
+  ### PostgreSQL ###########################################
+  postgres:
+    build: ./postgres
+    volumes:
+      # - postgresData:/var/lib/postgresql/data
+      - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - GITLAB_POSTGRES_INIT=${GITLAB_POSTGRES_INIT}
+      - GITLAB_POSTGRES_USER=${GITLAB_POSTGRES_USER}
+      - GITLAB_POSTGRES_PASSWORD=${GITLAB_POSTGRES_PASSWORD}
+      - GITLAB_POSTGRES_DB=${GITLAB_POSTGRES_DB}
+      - JUPYTERHUB_POSTGRES_INIT=${JUPYTERHUB_POSTGRES_INIT}
+      - JUPYTERHUB_POSTGRES_USER=${JUPYTERHUB_POSTGRES_USER}
+      - JUPYTERHUB_POSTGRES_PASSWORD=${JUPYTERHUB_POSTGRES_PASSWORD}
+      - JUPYTERHUB_POSTGRES_DB=${JUPYTERHUB_POSTGRES_DB}
+      - SONARQUBE_POSTGRES_INIT=${SONARQUBE_POSTGRES_INIT}
+      - SONARQUBE_POSTGRES_DB=${SONARQUBE_POSTGRES_DB}
+      - SONARQUBE_POSTGRES_USER=${SONARQUBE_POSTGRES_USER}
+      - SONARQUBE_POSTGRES_PASSWORD=${SONARQUBE_POSTGRES_PASSWORD}
+      - POSTGRES_CONFLUENCE_INIT=${CONFLUENCE_POSTGRES_INIT}
+      - POSTGRES_CONFLUENCE_DB=${CONFLUENCE_POSTGRES_DB}
+      - POSTGRES_CONFLUENCE_USER=${CONFLUENCE_POSTGRES_USER}
+      - POSTGRES_CONFLUENCE_PASSWORD=${CONFLUENCE_POSTGRES_PASSWORD}
     networks:
       - backend

@@ -72,6 +72,10 @@
 
 [【メモ】【Laravel】外部キー制約付き Migrate がさっぱり動かないときのチェック・ポイント（Mysql）](https://qiita.com/0w0/items/4a9cb7d27794bfb93d46)
 
+## laravel sonarqube
+
+[ドキュメント](https://laradock.io/documentation/#install-sonarqube-automatic-code-review-tool)
+
 ## GCP
 
 [これから始める GCP（GCE）　安全に無料枠を使い倒せ](https://qiita.com/Brutus/items/22dfd31a681b67837a74)

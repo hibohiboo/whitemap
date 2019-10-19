@@ -42,6 +42,7 @@ package "キャラクター" as chara {
     見た目
     メモ
     * 作成日時
+    
     * 更新日時
     __Objects__
     CharacterImages
