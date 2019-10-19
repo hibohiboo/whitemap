@@ -131,7 +131,7 @@ sysctl vm.max_map_count
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-上記で足りなかった。
+上記で足りなかった。。わけではなかった。別のエラー。
 
 ```
 sudo sysctl -w vm.max_map_count=524288
@@ -139,17 +139,19 @@ sudo sysctl -w vm.max_map_count=524288
 
 ## ログの設定
 
+- これは効かなかった。
+
 ```
 docker-compose run --user=root --rm sonarqube chown sonarqube:sonarqube /opt/sonarqube/logs
 ```
 
 ## ログイン
 
-![](./img/laravel_sonarqube/2019-10-19-11-11-07.png)
+![](../img/laravel_sonarqube/2019-10-19-11-11-07.png)
 
 ユーザ:admin,パスワード:admin でログイン
 
-![](./img/laravel_sonarqube/2019-10-19-11-17-00.png)
+![](../img/laravel_sonarqube/2019-10-19-11-17-00.png)
 
 プロジェクトの作成
 
