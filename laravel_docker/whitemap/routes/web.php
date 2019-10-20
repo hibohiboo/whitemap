@@ -26,6 +26,8 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', 'MyAuth\LoginController@authenticate');
+Route::get('/logout', 'MyAuth\LoginController@logout');
+
 
 Route::get('/home', function () {
     Log::info("Hello my log,");
@@ -57,8 +59,10 @@ Route::post('/tag', function (Illuminate\Http\Request $request) {
             ->withInput()
             ->withErrors($validator);
     }
+    $user = $request->user();
     $tag = new App\Models\Tag();
     $tag->name = $request->name;
+    $tag->create_user_id = $user->id;
     $tag->save();
 
     return redirect('/');

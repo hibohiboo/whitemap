@@ -2,10 +2,10 @@
 
 ```bash
 php artisan migrate # マイグレーションでテーブルを作成
+php artisan passport:install # passportに必要な情報をDBに登録：
 php artisan migrate:rollback # 上記のマイグレーションを取り消す。
 php artisan make:migration create_tags_table # tagsテーブルを作成
 php artisan make:model Models/Tag # Tagモデルをapp/Modelsディレクトリ配下に作成
-
 
 
 ```

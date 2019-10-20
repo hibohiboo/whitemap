@@ -49,7 +49,7 @@ class LoginAction extends Controller
             'twitter_profile_image_url_https' => $request->input('twitter_profile_image_url_https')]
         );
 
-        $token = $user->createToken('example_token')->accessToken; // この行追加
+        $token = $user->createToken('WhitemapPlayer')->accessToken; // この行追加
 
         return response()->json([
             'uid' => $uid,

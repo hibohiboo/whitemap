@@ -16,6 +16,7 @@
 <div class="starter-template">
     <h1>マイページ</h1>
     @if(Auth::check())
+    <a href="/logout">ログアウト</a>
     @else 
     こんにちは！  ゲストさん <br />
     <a href="/login">ログイン</a>

@@ -64,4 +64,12 @@ class LoginController extends Controller
             abort(401, 'Unauthorixed');
         }
     }
+
+    /**
+     * ログアウトする。
+     */
+    public function logout(){
+        Auth::logout();
+        return redirect('/home');
+    }
 }

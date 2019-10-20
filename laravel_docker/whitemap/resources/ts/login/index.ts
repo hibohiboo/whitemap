@@ -7,6 +7,7 @@ import * as firebaseui from 'firebaseui';
         signInSuccessUrl: '/callback',
         callbacks: {
             signInSuccessWithAuthResult: (authResult: any, callbackUrl: any) => {
+                console.log('認証成功');
                 const user = authResult.user;
                 // const credential = authResult.credential;
                 // const isNewUser = authResult.additionalUserInfo.isNewUser;
@@ -24,6 +25,7 @@ import * as firebaseui from 'firebaseui';
                 // console.log("twitterUser", twitterUser);
                 (async () => {
                     const idToken = await user.getIdToken(true);
+                    console.log('ログイン処理開始');
                     $('#token').val(`${idToken}`);
                     $('#twitter_screen_name').val(`${twitter_screen_name}`);
                     $('#twitter_profile_image_url_https').val(`${twitter_profile_image_url_https}`);
