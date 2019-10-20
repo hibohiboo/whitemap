@@ -19,7 +19,8 @@ class CreateUserCouponsTable extends Migration
             $table->integer('subscribe_user_id')->unsigned()->comment('受取ユーザID');
             $table->integer('publish_user_id')->unsigned()->comment('発行ユーザID');
             $table->dateTime('expire')->nullable()->comment('利用期限');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();
 
             $table->foreign('subscribe_user_id')->references('id')->on('users');

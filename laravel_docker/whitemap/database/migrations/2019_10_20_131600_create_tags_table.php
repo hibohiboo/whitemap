@@ -19,7 +19,8 @@ class CreateTagsTable extends Migration
             $table->string('name');
             $table->integer('value')->default(0);
             $table->boolean('is_display')->default(true);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
             $table->foreign('create_user_id')->references('id')->on('users');
         });

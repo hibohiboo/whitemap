@@ -71,6 +71,8 @@
 ## laravel db
 
 [【メモ】【Laravel】外部キー制約付き Migrate がさっぱり動かないときのチェック・ポイント（Mysql）](https://qiita.com/0w0/items/4a9cb7d27794bfb93d46)
+[Laravel の DB migration で日付のデフォルトを指定](https://qiita.com/kuwana/items/ebf17c83c602ef36afb4)
+[Laravel(Eloquent)の save メソッドを使ったら MySQL の timestamp 型で謎な挙動が発生した話](https://tech.innovator.jp.net/entry/2019/01/07/151803)
 
 ## laravel sonarqube
 

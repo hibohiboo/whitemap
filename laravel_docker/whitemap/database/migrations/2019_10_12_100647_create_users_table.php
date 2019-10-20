@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('name', 255);
             $table->string('twitter_screen_name', 255)->nullable();
             $table->string('twitter_profile_image_url_https', 1024)->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->rememberToken();
         });
     }
