@@ -34,43 +34,46 @@ Route::get('/home', function () {
     return view('home');
 });
 
-/**
- * タグ一覧表示 / 登録画面表示
- */
-Route::get('/tag', function () {
-    $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
+Route::group(['middleware' => ['auth']], function () {
+    // この中はログインされている場合のみルーティングされる
+    /**
+     * タグ一覧表示 / 登録画面表示
+     */
+    Route::get('/tag', function () {
+        $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
 
-    return view('tags', [
-        'tags' => $tags
-    ]);
-});
+        return view('tags', [
+            'tags' => $tags
+        ]);
+    });
 
-/**
- * 新タグ追加
- */
-Route::post('/tag', function (Illuminate\Http\Request $request) {
-    //
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
+    /**
+     * 新タグ追加
+     */
+    Route::post('/tag', function (Illuminate\Http\Request $request) {
+        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
 
-    if ($validator->fails()) {
-        return redirect('/tag')
-            ->withInput()
-            ->withErrors($validator);
-    }
-    $user = $request->user();
-    $tag = new App\Models\Tag();
-    $tag->name = $request->name;
-    $tag->create_user_id = $user->id;
-    $tag->save();
+        if ($validator->fails()) {
+            return redirect('/tag')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        $user = $request->user();
+        $tag = new App\Models\Tag();
+        $tag->name = $request->name;
+        $tag->create_user_id = $user->id;
+        $tag->save();
 
-    return redirect('/');
-});
+        return redirect('/');
+    });
 
-/**
- * タグ削除
- */
-Route::delete('/tag/{tagId}', function (Tag $tagId) {
-    //
+    /**
+     * タグ削除
+     */
+    Route::delete('/tag/{tagId}', function (Tag $tagId) {
+        //
+    });
 });
