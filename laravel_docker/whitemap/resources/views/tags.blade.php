@@ -3,12 +3,12 @@
 @section('content')
     <main class="container">
         <div class="col-sm-offset-2 col-sm-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     新しいタグ
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <!-- バリデーションエラーの表示 -->
                     @include('common.errors')
 
@@ -28,7 +28,7 @@
                         <!-- タグ追加ボタン -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-plus"></i> タグ追加
                                 </button>
                             </div>
