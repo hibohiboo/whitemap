@@ -39,7 +39,7 @@ class LoginController extends Controller
         try {
             $verifiedIdToken = $this->auth->verifyIdToken($id_token);
         } catch (InvalidToken $e) {
-            $logger->error("invalidToken", $e->toString());
+            $this->logger->error("invalidToken", $e->toString());
             return response()->json([
                 'error' => $e->toString(),
             ]);

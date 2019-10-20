@@ -1,18 +1,18 @@
-## 開発環境の起動
+## 目次
 
-```
-./bin/restart.sh
-```
+### develop-environment
 
-http://192.168.50.10 を確認。
+- 開発環境についての文書
+- GCP / Laravel のプラグインなど
 
-## gcp へのデプロイ
+### architectures
 
-```
-./bin/gcp_bash.sh
-```
+- 設計についての実装方法
 
-```
-gcloud auth login
-gcloud app deploy
-```
+### dev-tools
+
+- ツールや web サイトの利用など、直接は入れない周辺ツール関連
+
+### laravel
+
+- Laravel の持っている機能、使い方
