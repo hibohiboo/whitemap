@@ -36,14 +36,17 @@ Route::get('/home', function () {
  * タグ一覧表示 / 登録画面表示
  */
 Route::get('/tag', function () {
-    //
-    return view('tags');
+    $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
+
+    return view('tags', [
+        'tags' => $tags
+    ]);
 });
 
 /**
  * 新タグ追加
  */
-Route::post('/tag', function (Request $request) {
+Route::post('/tag', function (Illuminate\Http\Request $request) {
     //
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
@@ -54,6 +57,11 @@ Route::post('/tag', function (Request $request) {
             ->withInput()
             ->withErrors($validator);
     }
+    $tag = new App\Models\Tag();
+    $tag->name = $request->name;
+    $tag->save();
+
+    return redirect('/');
 });
 
 /**

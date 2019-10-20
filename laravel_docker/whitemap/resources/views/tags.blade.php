@@ -37,7 +37,37 @@
                 </div>
             </div>
 
-            <!-- TODO: 現在のタグ -->
+            @if (count($tags) > 0)
+                <div class="card">
+                    <div class="card-header">
+                        タグ一覧
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped tag-table">
+                            <!-- テーブルヘッダ -->
+                            <thead>
+                                <tr>
+                                    <th>タグ</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <!-- テーブル本体 -->
+                            <tbody>
+                                @foreach ($tags as $tag)
+                                    <tr>
+                                        <td class="table-text">
+                                            <div>{{ $tag->name }}</div>
+                                        </td>
+                                        <!-- TODO: 削除ボタン -->
+                                        <td>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
