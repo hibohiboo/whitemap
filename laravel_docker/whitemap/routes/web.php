@@ -39,7 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     /**
      * タグ一覧表示 / 登録画面表示
      */
-    Route::get('/tag', function () {
+    Route::get('/tag', function (Illuminate\Http\Request $request) {
+        $user = $request->user();
         $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
 
         return view('tags', [
