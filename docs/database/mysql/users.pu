@@ -43,11 +43,13 @@ package "MySQL" as mysql <<Database>> {
     entity "ユーザクーポン" as user_coupons <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
         * ユーザクーポンID [PK]
         --
-        * ユーザID [FK]
+        * ユーザID [FK] 受取
+        * ユーザID [FK] 発行
         * クーポンID [FK]
-        * 表示フラグ[default 1] / 0:非表示,1:表示
+        利用期限
         * 作成日時
         * 更新日時
+        削除日時/論理削除
     }
 
     entity "キャラクタマスタ" as characters <<M,TRANSACTION_MARK_COLOR>> MAIN_ENTITY {

@@ -82,7 +82,7 @@ package "MySQL" as mysql <<Database>> {
         * ユーザID [FK] 受取
         * ユーザID [FK] 発行
         * クーポンID [FK]
-        * 利用期限
+        利用期限
         * 作成日時
         * 更新日時
         削除日時/論理削除
