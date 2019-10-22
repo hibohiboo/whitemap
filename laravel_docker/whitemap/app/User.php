@@ -6,14 +6,18 @@ use Laravel\Passport\HasApiTokens; // 追加
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Enums\Coupon\CouponIds;
 class User extends Authenticatable
 {
     use Notifiable, HasApiTokens; // HasApiTokens を追加
-    // public $firebase_uid;
-    // public $twitter_screen_name;
-    // public $twitter_profile_image_url_https;
-
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
+        // $coupons = $this->userCoupons;
+        // var_dump($coupons->select(['id'])->get());
+        // exit;
+        // $ids = array_column($coupons, 'id');
+        // $this->isAdmin = in_array(CouponIds::ADMIN(), $ids, true);
+    }
     /**
      * The attributes that are mass assignable.
      *

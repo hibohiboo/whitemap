@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Auth; 
 use App\Gate\UserAccess; 
+use App\Gate\AdminAccess; 
 use \Psr\Log\LoggerInterface;
 
 class AuthServiceProvider extends ServiceProvider
@@ -35,10 +36,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // 認可
+        Gate::define('admin-access', new AdminAccess);
+        // 認可
         Gate::define('user-access', new UserAccess);
-
         // 認可の前にロギング
         Gate::before(function ($user, $ability) use ($logger) {
+            // Log::info("Hello my log,");
             $logger->info($ability, ['firebase_uid'=>$user->getAuthIdentifier()]);
         });
     }

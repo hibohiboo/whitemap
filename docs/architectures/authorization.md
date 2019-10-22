@@ -6,3 +6,6 @@
 [laravel](https://laravel.com/docs/6.x)
 [readouble laravel](https://readouble.com/laravel/6.0/ja/passport.html)
 [【Laravel】 認証や認可に関する補足資料](https://qiita.com/mpyw/items/8c5413b99b8e299f7002)
+[Laravel 6.0 認可](https://readouble.com/laravel/6.0/ja/authorization.html)
+[Laravel 6.0 ルーティング](https://readouble.com/laravel/6.0/ja/routing.html)
+[Laravel 6.0 ミドルウェア](https://readouble.com/laravel/6.0/ja/middleware.html)

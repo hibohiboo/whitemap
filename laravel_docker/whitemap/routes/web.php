@@ -1,5 +1,5 @@
 <?php
-
+use App\Enums\Coupon\CouponIds;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,13 +36,20 @@ Route::get('/home', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     // この中はログインされている場合のみルーティングされる
+
+});
+
+Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
+    // この中は管理者権限の場合のみルーティングされる
     /**
      * タグ一覧表示 / 登録画面表示
      */
     Route::get('/tag', function (Illuminate\Http\Request $request) {
         $user = $request->user();
         $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
-
+        // var_dump($user);
+        // var_dump();//->select(['id'])->get());
+        // var_dump(session('user'));
         return view('tags', [
             'tags' => $tags
         ]);
