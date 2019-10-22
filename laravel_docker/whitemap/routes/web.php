@@ -50,38 +50,12 @@ Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
     /**
      * タグ一覧表示 / 登録画面表示
      */
-    Route::get('/tag', function (Illuminate\Http\Request $request) {
-        $user = $request->user();
-        $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
-        // var_dump($user); これはデフォルトで取得可能
-        // var_dump(session('user')); これはデフォルトで取得できない。null。
-        return view('admin/tags', [
-            'tags' => $tags
-        ]);
-    });
+    Route::get('/tag','Admin\TagController@index');
 
     /**
      * 新タグ追加
      */
-    Route::post('/tag', function (Illuminate\Http\Request $request) {
-        //
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('/tag')
-                ->withInput()
-                ->withErrors($validator);
-        }
-        $user = $request->user();
-        $tag = new App\Models\Tag();
-        $tag->name = $request->name;
-        $tag->create_user_id = $user->id;
-        $tag->save();
-
-        return redirect('/');
-    });
+    Route::post('/tag','Admin\TagController@create');
 
     /**
      * タグ削除

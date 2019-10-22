@@ -6,4 +6,7 @@ return [
         'TYPE_GET' => 1,
         'TYPE_USE' => 2,
     ],
+    'Paginator'=>[
+        'PER_PAGE'=>30
+    ]
 ];

@@ -7,7 +7,6 @@
                 <div class="card-header">
                     新しいタグ
                 </div>
-
                 <div class="card-body">
                     <!-- バリデーションエラーの表示 -->
                     @include('common.errors')
@@ -68,6 +67,7 @@
                     </div>
                 </div>
             @endif
+            {{ $tags->links() }}
         </div>
     </div>
 @endsection

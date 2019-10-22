@@ -9,6 +9,8 @@ php artisan make:model Models/Tag # Tagモデルをapp/Modelsディレクトリ�
 php artisan make:seeder UsersTableSeeder # Seeder作成
 php artisan db:seed --class=UsersTableSeeder # Seeder実行。--classを付けないとDatabaseSeederに定義されたSeederを実行
 php artisan migrate:refresh --seed # db作成しなおし
+php artisan make:controller Admin/TagController # コントローラ作成。１つしかないなら --invoke
+php artisan make:controller Admin/TagController --resource --model=Models/Tag # モデルと紐づけたコントローラ作成
 ```
 
 ## 参考

@@ -35,7 +35,11 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 @guest
                 @else
-                    <a class="navbar-brand user-icon" href="{{ url('/') }}"><i class="user-icon"><img src="{{\Auth::user()->twitter_profile_image_url_https}}"></i></a>
+                    <a class="navbar-brand user-icon" href="{{ url('/') }}">
+                      <i class="user-icon">
+                        <img src="{{\Auth::user()->twitter_profile_image_url_https}}">
+                      </i>
+                    </a>
                 @endguest
             <!-- <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,14 +62,16 @@
                     </li>
                 </ul>
             </div>
-            <div class="my-2 my-lg-0">
-                @guest
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>
-                    </ul>
-                @else
-                @endguest
-            </div>
+            @guest
+              <div class="my-2 my-lg-0">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>
+                </ul>
+              </div>
+            @else
+            
+            @endguest
+            
         </nav>
         @yield('content')
     </div>
