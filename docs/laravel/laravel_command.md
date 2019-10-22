@@ -11,6 +11,7 @@ php artisan db:seed --class=UsersTableSeeder # Seeder実行。--classを付け�
 php artisan migrate:refresh --seed # db作成しなおし
 php artisan make:controller Admin/TagController # コントローラ作成。１つしかないなら --invoke
 php artisan make:controller Admin/TagController --resource --model=Models/Tag # モデルと紐づけたコントローラ作成
+php artisan make:request Admin/StoreTagPost # バリデーション用のリクエストを作成する
 ```
 
 ## 参考

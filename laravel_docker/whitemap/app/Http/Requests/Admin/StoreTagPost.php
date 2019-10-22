@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Requests\Admin;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTagPost extends FormRequest
@@ -32,16 +30,16 @@ class StoreTagPost extends FormRequest
     }
 
     /**
- * 定義済みバリデーションルールのエラーメッセージ取得
- *
- * @return array
- */
-public function messages()
-{
-    return [
-        'name.required' => '名前は必須です',
-        'name.max' => '名前は255文字以内で入力してください',
-        'value.required'  => '値は必須です',
-    ];
-}
+     * 定義済みバリデーションルールのエラーメッセージ取得
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => '名前は必須です',
+            'name.max' => '名前は255文字以内で入力してください',
+            'value.required'  => '値は必須です',
+        ];
+    }
 }
