@@ -1,5 +1,7 @@
 ## 認可
 
+[管理者クーポンによるタグ画面の制御](https://github.com/hibohiboo/whitemap/tree/390ed235b867b20b70b0313d8a4ad3e2132653e1/laravel_docker/whitemap)
+
 ## 参考
 
 [Laravel 6.0 基本のタスクリスト](https://qiita.com/ucan-lab/items/36f6e89abad26a68f69a)
@@ -9,3 +11,4 @@
 [Laravel 6.0 認可](https://readouble.com/laravel/6.0/ja/authorization.html)
 [Laravel 6.0 ルーティング](https://readouble.com/laravel/6.0/ja/routing.html)
 [Laravel 6.0 ミドルウェア](https://readouble.com/laravel/6.0/ja/middleware.html)
+[Laravel の Gate(ゲート)機能で権限(ロール)によるアクセス制限を実装する](https://www.ritolab.com/entry/56)

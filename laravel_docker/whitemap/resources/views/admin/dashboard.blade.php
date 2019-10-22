@@ -1,6 +1,6 @@
 @extends('layouts.app') 
 
-@section('title') マイページ @endsection
+@section('title') 管理者ダッシュボード @endsection
 
 @section('head-scripts')
 
@@ -14,17 +14,9 @@
 @section('content')
 <main role="main" class="container">
 <div class="starter-template">
-    <h1>マイページ</h1>
-    @if(Auth::check())
-      <ul>
-        @can('admin-access')
-          <li><a href="/admin">管理者画面へ</a></li>
-        @endcan
-        <li><a href="#" id="logout">ログアウト</a></li>
-      </ul>
-    @else 
-      こんにちは！  ゲストさん <br />
-      <a href="/login">ログイン</a>
-    @endif
+    <h1>管理者ダッシュボード</h1>
+    <ul>
+      <li><a href="/tag">タグ追加</a></li>
+    </ul>
 </div></main>
 @endsection

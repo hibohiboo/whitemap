@@ -42,15 +42,20 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
     // この中は管理者権限の場合のみルーティングされる
     /**
+     * 管理者ダッシュボード
+     */
+    Route::get('/admin', function (Illuminate\Http\Request $request) {
+        return view('admin/dashboard');
+    });
+    /**
      * タグ一覧表示 / 登録画面表示
      */
     Route::get('/tag', function (Illuminate\Http\Request $request) {
         $user = $request->user();
         $tags = App\Models\Tag::orderBy('created_at', 'asc')->get();
-        // var_dump($user);
-        // var_dump();//->select(['id'])->get());
-        // var_dump(session('user'));
-        return view('tags', [
+        // var_dump($user); これはデフォルトで取得可能
+        // var_dump(session('user')); これはデフォルトで取得できない。null。
+        return view('admin/tags', [
             'tags' => $tags
         ]);
     });
