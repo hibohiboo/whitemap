@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('title') タグ管理 @endsection
+@section('admin')
+  <li class="nav-item"><a class="nav-link" href="{{ url('/admin') }}">管理者ダッシュボード</span></a></li>
+@endsection
 
 @section('content')
     {{-- このコメントはレンダ後のHTMLには現れない --}}
