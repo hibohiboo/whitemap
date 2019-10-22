@@ -26,11 +26,25 @@ class TagController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 新規作成画面を表示
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    // public function create(Request $request)
+    // {
+
+    // }
+
+    /**
+     * Store a newly created resource in storage.
+     * 新規作成
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
+        //
         $request->validate([
             'name' => 'required|max:255',
             'value' => 'required|integer'
@@ -47,17 +61,6 @@ class TagController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Tag  $tag
@@ -70,6 +73,7 @@ class TagController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 編集画面を表示
      *
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
@@ -81,6 +85,9 @@ class TagController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 変更の保存
+     * Laravelはタイプヒントされた変数名とルートセグメント名が一致する場合、
+     * ルートかコントローラアクション中にEloquentモデルが定義されていると、自動的に依存解決する。
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tag  $tag
@@ -88,7 +95,16 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'value' => 'required|integer'
+        ]);
+
+        $tag->name = $request->name;
+        $tag->value = $request->value;
+        $tag->save();
+
+        return redirect('/tag');
     }
 
     /**

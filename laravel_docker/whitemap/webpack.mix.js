@@ -29,3 +29,4 @@ mix.webpackConfig({
         popper: 'popper.js'
     }
 });
+mix.ts('resources/ts/admin/tag/index.ts', 'public/js/admin/tag').version();

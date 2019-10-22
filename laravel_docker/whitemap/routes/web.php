@@ -55,12 +55,10 @@ Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
     /**
      * 新タグ追加
      */
-    Route::post('/tag','Admin\TagController@create');
+    Route::post('/tag','Admin\TagController@store');
 
     /**
      * タグ削除
      */
-    Route::delete('/tag/{tagId}', function (Tag $tagId) {
-        //
-    });
+    Route::put('/tag/{tag}','Admin\TagController@update');
 });
