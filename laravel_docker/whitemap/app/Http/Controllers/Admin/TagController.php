@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use App\Http\Requests\Admin\StoreTagPost;
 use Illuminate\Http\Request;
 use \Illuminate\Validation\Validator;
 
@@ -39,17 +40,11 @@ class TagController extends Controller
      * Store a newly created resource in storage.
      * 新規作成
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Admin\StoreTagPost  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTagPost $request)
     {
-        //
-        $request->validate([
-            'name' => 'required|max:255',
-            'value' => 'required|integer'
-        ]);
-
         $user = $request->user();
         $tag = new Tag();
         $tag->name = $request->name;
@@ -91,15 +86,10 @@ class TagController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Requests\Admin\StoreTagPost
      */
-    public function update(Request $request, Tag $tag)
+    public function update(StoreTagPost $request, Tag $tag)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'value' => 'required|integer'
-        ]);
-
         $tag->name = $request->name;
         $tag->value = $request->value;
         $tag->save();
