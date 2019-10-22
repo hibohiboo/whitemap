@@ -33,12 +33,14 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'value' => 'required|integer'
         ]);
 
         $user = $request->user();
         $tag = new Tag();
         $tag->name = $request->name;
         $tag->create_user_id = $user->id;
+        $tag->value = $request->value;
         $tag->save();
 
         return redirect('/tag');

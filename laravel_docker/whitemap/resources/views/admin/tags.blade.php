@@ -17,10 +17,19 @@
 
                         <!-- タグ名 -->
                         <div class="form-group">
-                            <label for="tag-name" class="col-sm-3 control-label">タグ</label>
+                            <label for="tag-name" class="col-sm-3 control-label">タグ名</label>
 
                             <div class="col-sm-6">
                                 <input type="text" name="name" id="tag-name" class="form-control" value="{{ old('tag') }}">
+                            </div>
+                        </div>
+
+                        <!-- タグ名 -->
+                        <div class="form-group">
+                            <label for="tag-value" class="col-sm-3 control-label">値</label>
+
+                            <div class="col-sm-6">
+                                <input type="number" name="value" id="tag-value" class="form-control" value="{{ old('tag') }}">
                             </div>
                         </div>
 
@@ -47,6 +56,7 @@
                             <thead>
                                 <tr>
                                     <th>タグ</th>
+                                    <th>値</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -56,6 +66,9 @@
                                     <tr>
                                         <td class="table-text">
                                             <div>{{ $tag->name }}</div>
+                                        </td>
+                                        <td class="table-text">
+                                            <div>{{ $tag->value }}</div>
                                         </td>
                                         <!-- TODO: 削除ボタン -->
                                         <td>
