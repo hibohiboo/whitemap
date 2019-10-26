@@ -24,7 +24,7 @@ class StoreTagPost extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:2',
+            'name' => 'required|max:255',
             'value' => 'required|integer'
         ];
     }

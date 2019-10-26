@@ -58,7 +58,22 @@ Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
     Route::post('/tag','Admin\TagController@store');
 
     /**
-     * タグ削除
+     * タグ更新
      */
     Route::put('/tag/{tag}','Admin\TagController@update');
+
+    /**
+     * クーポン一覧表示 / 登録画面表示
+     */
+    Route::get('/coupon','Admin\CouponController@index');
+
+    /**
+     * 新クーポン追加
+     */
+    Route::post('/coupon','Admin\CouponController@store');
+
+    /**
+     * クーポン更新
+     */
+    Route::put('/coupon/{coupon}','Admin\CouponController@update');
 });

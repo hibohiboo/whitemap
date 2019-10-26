@@ -19,6 +19,7 @@
     <h1>管理者ダッシュボード</h1>
     <ul>
       <li><a href="/tag">タグ追加</a></li>
+      <li><a href="/coupon">クーポン追加</a></li>
     </ul>
 </div></main>
 @endsection

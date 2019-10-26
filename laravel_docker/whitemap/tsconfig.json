@@ -11,7 +11,14 @@
         "moduleResolution": "node",
         "target": "es6",
         "lib": ["es2016", "dom"],
-        "allowJs": true
+        "allowJs": true,
+        "incremental": true, // 差分ビルド有効
+        // "declaration": true,, "resources/types/index.d.ts"
+        // "skipDefaultLibCheck": true,
+        // "skipLibCheck": true
+        // "checkJs": true
+        "typeRoots": ["./resources/ts/types", "node_modules/@types"]
     },
+
     "include": ["resources/ts/**/*"]
 }
