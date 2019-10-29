@@ -7,19 +7,21 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "typesync": "typesync"
     },
     "devDependencies": {
-        "@types/axios": "^0.14.0",
         "@types/bootstrap": "^4.3.1",
         "@types/jquery": "^3.3.31",
         "@types/lodash": "^4.14.144",
+        "@types/sass": "^1.16.0",
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.2.1",
         "firebase": "^7.2.0",
         "firebaseui": "^4.2.0",
         "jquery": "^3.2",
+        "jquery-validation": "^1.19.1",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -28,6 +30,8 @@
         "sass-loader": "^7.1.0",
         "ts-loader": "^6.2.0",
         "typescript": "^3.6.4",
+        "typesync": "^0.6.1",
         "vue-template-compiler": "^2.6.10"
-    }
+    },
+    "dependencies": {}
 }

@@ -24,16 +24,6 @@ class CouponController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,28 +41,6 @@ class CouponController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Coupon $coupon)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Coupon $coupon)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -81,7 +49,15 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'bail|required|max:255',
+            'point' => 'required|integer',
+            'type' => 'required|integer'
+        ]);
+        $coupon->point = $request->point;
+        $coupon->save();
+
+        return redirect('/coupon');
     }
 
     /**
@@ -94,4 +70,5 @@ class CouponController extends Controller
     {
         //
     }
+
 }

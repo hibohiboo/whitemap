@@ -53,11 +53,11 @@
                     @include('common.errors')
 
                     {{-- 新クーポンフォーム --}}
-                    <form action="{{ url('coupon')}}" method="POST" class="form-horizontal">
+                    <form id="create-form" action="{{ url('coupon')}}" method="POST" class="form-horizontal">
                         @csrf
                         {{-- クーポンID --}}
                         <div class="form-group">
-                            <label for="coupon-id" class="col-sm-3 control-label">クーポンID</label>
+                            <label for="coupon-id" class="col-sm-3 control-label" >クーポンID</label>
 
                             <div class="col-sm-6">
                                 <input type="text" name="id" id="coupon-id" class="form-control" value="{{ old('coupon') }}">
@@ -152,5 +152,7 @@
 @endsection
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js" integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
-  <script src="{{ mix('js/admin/coupon/index.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/localization/messages_ja.js"></script>
+<script src="{{ mix('js/admin/coupon/index.js') }}"></script>
 @endsection

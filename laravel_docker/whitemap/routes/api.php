@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/auth', 'MyAuth\LoginAction');
 Route::middleware('auth:api')->get('/hoge', 'UserAction@example');
+Route::get('/coupon/unique','Actions\CouponAction@unique');

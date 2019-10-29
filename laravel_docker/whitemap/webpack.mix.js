@@ -26,7 +26,9 @@ mix.webpackConfig({
         axios: 'axios',
         lodash: 'lodash',
         bootstrap: 'bootstrap',
-        popper: 'popper.js'
+        popper: 'popper.js',
+        JQueryValidation: 'jquery-validation'
     }
 });
 mix.ts('resources/ts/admin/tag/index.ts', 'public/js/admin/tag').version();
+mix.ts('resources/ts/admin/coupon/index.ts', 'public/js/admin/coupon').version();
