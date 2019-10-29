@@ -22,15 +22,15 @@
             </div>{{-- /.modal-header --}}
             <div class="modal-body">
               {{-- クーポン名 --}}
-              <div class="form-group">
-                <label for="edit-coupon-name" class="col-sm-3 control-label">クーポン名</label>
+              <div class="form-group row">
+                <label for="edit-coupon-name" class="col-sm-3 col-form-label">クーポン名</label>
                 <div class="col-sm-6">
                     <input type="text" name="name" id="edit-coupon-name" class="form-control" value="{{ old('coupon') }}">
                 </div>
               </div>
               {{-- クーポン値 --}}
-              <div class="form-group">
-                <label for="edit-coupon-point" class="col-sm-3 control-label">値</label>
+              <div class="form-group row">
+                <label for="edit-coupon-point" class="col-sm-3 col-form-label">値</label>
                 <div class="col-sm-6">
                     <input type="number" name="point" id="edit-coupon-point" class="form-control" value="{{ old('coupon') }}">
                 </div>
@@ -53,44 +53,55 @@
                     @include('common.errors')
 
                     {{-- 新クーポンフォーム --}}
-                    <form id="create-form" action="{{ url('coupon')}}" method="POST" class="form-horizontal">
+                    <form id="create-form" action="{{ url('coupon')}}" method="POST">
                         @csrf
                         {{-- クーポンID --}}
-                        <div class="form-group">
-                            <label for="coupon-id" class="col-sm-3 control-label" >クーポンID</label>
+                        <div class="form-group row">
+                            <label for="coupon-id" class="col-sm-3 col-form-label" >クーポンID</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="id" id="coupon-id" class="form-control" value="{{ old('coupon') }}">
+                                <input type="text" name="id" id="coupon-id" class="form-control" aria-describedby="idHelpBlock" value="{{ old('coupon') }}" required>
+                                <small id="idHelpBlock" class="form-text text-muted">IDは半角英数字と-_で、重複しないものを入力してください</small>
                             </div>
                         </div>
 
                         {{-- クーポン名 --}}
-                        <div class="form-group">
-                            <label for="coupon-name" class="col-sm-3 control-label">クーポン名</label>
+                        <div class="form-group row">
+                            <label for="coupon-name" class="col-sm-3 col-form-label">クーポン名</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="coupon-name" class="form-control" value="{{ old('coupon') }}">
+                                <input type="text" name="name" id="coupon-name" class="form-control" value="{{ old('coupon') }}" required>
+                                <div class="valid-feedback">
+                                    入力済み!
+                                  </div>
                             </div>
                         </div>
                         {{-- クーポン種別 --}}
-                        <div class="form-group">
-                            <label for="coupon-type" class="col-sm-3 control-label">クーポン種別</label>
+                        <div class="form-group row">
+                            <label for="coupon-type" class="col-sm-3 col-form-label">クーポン種別</label>
 
                             <div class="col-sm-6">
                                  {{Form::select('type', $types, old('coupon')) }}
                             </div>
                         </div>
                         {{-- クーポン値 --}}
-                        <div class="form-group">
-                            <label for="coupon-point" class="col-sm-3 control-label">値</label>
+                        <div class="form-group row">
+                            <label for="coupon-point" class="col-sm-3 col-form-label">値</label>
 
                             <div class="col-sm-6">
-                                <input type="number" name="point" id="coupon-point" class="form-control" value="{{ old('coupon') }}">
+                                <input type="number" name="point" id="coupon-point" class="form-control" value="{{ old('coupon', 0) }}" required>
                             </div>
                         </div>
-
+                        {{-- 表示フラグ --}}
+                        <div class="form-group row form-check">
+                            <div class="col-sm-6">
+                                  
+                                {{Form::checkbox('is_display', true, true, ['class' => 'form-check-input', 'id'=>'coupon-is_display'])}}
+                                <label for="coupon-is_display" class="form-check-label">表示</label>
+                              </div>
+                        </div>
                         {{-- クーポン追加ボタン --}}
-                        <div class="form-group">
+                        <div class="form-group row">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-plus"></i> クーポン追加
@@ -113,6 +124,7 @@
                                     <th>クーポン</th>
                                     <th>値</th>
                                     <th>種別</th>
+                                    <th>表示</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -131,6 +143,9 @@
                                   </td>
                                   <td class="table-text">
                                       <div>{{ $types[$coupon->type]  }}</div>
+                                  </td>
+                                  <td class="table-text">
+                                      <div>{{ $coupon->is_display ? '表示' : '隠す'  }}</div>
                                   </td>
                                   <td>
                                     <button type="button" class="btn" data-toggle="modal" data-target="#editModal" 

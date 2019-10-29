@@ -38,6 +38,16 @@ class CouponController extends Controller
             'point' => 'required|integer',
             'type' => 'required|integer'
         ]);
+
+        $coupon = new Coupon();
+        $coupon->id = $request->id;
+        $coupon->name = $request->name;
+        $coupon->point = $request->point;
+        $coupon->type = $request->type;
+        $coupon->is_display = $request->is_display;
+        $coupon->save();
+
+        return redirect('/coupon');
     }
 
     /**

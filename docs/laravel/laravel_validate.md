@@ -21,3 +21,4 @@ remote を使ったときに ajax エラーとなる可能性。
 [BootStrap4 でフロントエンド完結の password 一致のバリデーションを実現する](https://qiita.com/Coolucky/items/8ae60a9f3911423aca0c)
 [novalidate を付与する。html5 検証と validate は同時に使用できない。](https://stackoverflow.com/questions/22549260/why-is-jquery-validation-adding-novalidate-attribute)
 [大量の Input タグがあるページで jquery validation の Submit がどえらい遅いのは options.success のせいだったかもしれない。](https://qiita.com/qyen/items/716d49fec68f944e4d06)
+[jQuery Validate Plugin の解説と Validate 日本語環境用 Plugin と jQuery Form Plugin との連携](https://kudakurage.hatenadiary.com/entry/20091211/1260521031)

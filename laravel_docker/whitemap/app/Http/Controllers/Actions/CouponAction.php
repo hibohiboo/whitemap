@@ -13,10 +13,10 @@ class CouponAction extends Controller
      */
     public function unique(Request $request)
     {
-        $result = false;
+        $result = true;
         if ($request->has('id')) {
-            $result = Coupon::where('id', '=', $request->query('id'))->exists();
+            $result = ! Coupon::where('id', '=', $request->query('id'))->exists();
         }
-        return response()->json(!$result);
+        return response()->json($result);
     }
 }

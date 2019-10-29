@@ -24,6 +24,7 @@ $.validator.setDefaults({
     debug: false, // trueの場合、デバッグモードになりフォームは送信されない
     onkeyup: false, // 有効の場合はkeyupの度にremoteが走ってしまうため。。
     success: null,
+    validClass: 'valid-feedback',
     errorClass: 'invalid-feedback',
     errorElement: 'span',
     errorPlacement: function(error: JQuery, element: JQuery) {
@@ -37,39 +38,49 @@ $.validator.setDefaults({
         $(element).removeClass('is-invalid');
     }
 });
-$('#create-form').validate({
-    rules: {
-        id: {
-            required: true,
-            remote: '/api/coupon/unique', // remoteを使うにはslimではダメ
-            pattern: '[a-zA-Z0-9_-]+' // patternを使うにはadditonalの読み込みが必要
-            // remote: {
-            //   url: "check-email.php",
-            //   type: "get",
-            //   data: {
-            //     username: function() {
-            //       return $( "#username" ).val();
-            //     }
-            //   }
-            // }
-        },
-        name: { required: true },
-        point: { required: true, number: true }
-    },
-    messages: {
-        id: {
-            remote: '既に使われているＩＤです',
-            pattern: '半角英数字と-_を使用できます'
+$('#create-form')
+    .submit(event => {
+        // bootstrap4のカスタムバリデーション
+        const form = $('#create-form')[0] as HTMLFormElement;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
         }
-    }
-    // submitHandler: function(form: HTMLFormElement) {
-    //     // some other code
-    //     // maybe disabling submit button
-    //     // then:
-    //     console.log(form);
-    //     // $(form).submit();
-    // }
-});
+        form.classList.add('was-validated');
+    })
+    .validate({
+        rules: {
+            id: {
+                required: true,
+                remote: '/api/coupon/unique', // remoteを使うにはslimではダメ
+                pattern: '[a-zA-Z0-9_-]+' // patternを使うにはadditonalの読み込みが必要
+                // remote: {
+                //   url: "check-email.php",
+                //   type: "get",
+                //   data: {
+                //     username: function() {
+                //       return $( "#username" ).val();
+                //     }
+                //   }
+                // }
+            },
+            name: { required: true },
+            point: { required: true, number: true }
+        },
+        messages: {
+            id: {
+                remote: '既に使われているＩＤです',
+                pattern: '半角英数字と-_を使用できます'
+            }
+        }
+        // submitHandler: function(form: HTMLFormElement) {
+        //     // some other code
+        //     // maybe disabling submit button
+        //     // then:
+        //     console.log(form);
+        //     // $(form).submit();
+        // }
+    });
 
 // var forms = document.getElementsByClassName('needs-validation');
 // // Loop over them and prevent submission
