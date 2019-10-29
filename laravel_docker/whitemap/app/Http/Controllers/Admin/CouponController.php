@@ -15,7 +15,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::paginate(config('const.Paginator.PER_PAGE'));
+        $coupons = Coupon::orderBy('updated_at', 'DESC')->paginate(config('const.Paginator.PER_PAGE'));
         return view('admin/coupons', [
             'coupons' => $coupons,
             'types' => [ config('const.Coupons.TYPE_GET', 1) => '取得', 
@@ -44,7 +44,7 @@ class CouponController extends Controller
         $coupon->name = $request->name;
         $coupon->point = $request->point;
         $coupon->type = $request->type;
-        $coupon->is_display = $request->is_display;
+        $coupon->is_display = $request->is_display === '1';
         $coupon->save();
 
         return redirect('/coupon');
@@ -64,8 +64,14 @@ class CouponController extends Controller
             'point' => 'required|integer',
             'type' => 'required|integer'
         ]);
+
+        $coupon->name = $request->name;
         $coupon->point = $request->point;
+        $coupon->type = $request->type;
+        $coupon->is_display =  $request->is_display === '1';
         $coupon->save();
+
+        return redirect('/coupon');
 
         return redirect('/coupon');
     }

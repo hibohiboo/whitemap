@@ -21,20 +21,40 @@
               </button>
             </div>{{-- /.modal-header --}}
             <div class="modal-body">
-              {{-- クーポン名 --}}
-              <div class="form-group row">
-                <label for="edit-coupon-name" class="col-sm-3 col-form-label">クーポン名</label>
-                <div class="col-sm-6">
-                    <input type="text" name="name" id="edit-coupon-name" class="form-control" value="{{ old('coupon') }}">
+                {{-- クーポン名 --}}
+                <div class="form-group row">
+                    <label for="edit-coupon-name" class="col-sm-3 col-form-label">クーポン名</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" name="name" id="edit-coupon-name" class="form-control" value="{{ old('coupon') }}" required>
+                        <div class="valid-feedback">
+                            入力済み!
+                        </div>
+                    </div>
                 </div>
-              </div>
-              {{-- クーポン値 --}}
-              <div class="form-group row">
-                <label for="edit-coupon-point" class="col-sm-3 col-form-label">値</label>
-                <div class="col-sm-6">
-                    <input type="number" name="point" id="edit-coupon-point" class="form-control" value="{{ old('coupon') }}">
+                {{-- クーポン種別 --}}
+                <div class="form-group row">
+                    <label for="edit-coupon-type" class="col-sm-3 col-form-label">クーポン種別</label>
+
+                    <div class="col-sm-6">
+                          {{Form::select('type', $types, old('coupon')) }}
+                    </div>
                 </div>
-              </div>
+                {{-- クーポン値 --}}
+                <div class="form-group row">
+                    <label for="edit-coupon-point" class="col-sm-3 col-form-label">値</label>
+
+                    <div class="col-sm-6">
+                        <input type="number" name="point" id="edit-coupon-point" class="form-control" value="{{ old('coupon', 0) }}" required>
+                    </div>
+                </div>
+                {{-- 表示フラグ --}}
+                <div class="form-group row form-check">
+                    <div class="col-sm-6">
+                        {{Form::checkbox('is_display', true, true, ['class' => 'form-check-input', 'id'=>'edit-coupon-is_display'])}}
+                        <label for="edit-coupon-is_display" class="form-check-label">表示</label>
+                      </div>
+                </div>
             </div>{{-- /.modal-body --}}
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
@@ -73,7 +93,7 @@
                                 <input type="text" name="name" id="coupon-name" class="form-control" value="{{ old('coupon') }}" required>
                                 <div class="valid-feedback">
                                     入力済み!
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         {{-- クーポン種別 --}}
@@ -149,7 +169,8 @@
                                   </td>
                                   <td>
                                     <button type="button" class="btn" data-toggle="modal" data-target="#editModal" 
-                                            data-action="{{ url('coupon/' . $coupon->id) }}" data-name="{{$coupon->name}}" data-value="{{$coupon->point}}"
+                                            data-action="{{ url('coupon/' . $coupon->id) }}" data-name="{{$coupon->name}}" data-point="{{$coupon->point}}"
+                                            data-is_display="{{$coupon->is_display}}" data-type="{{$coupon->type}}"
                                     >
                                     <i class="fa fa-btn fa-edit"></i>
                                   </button>

@@ -3,23 +3,7 @@ import { ModalEventHandler } from 'bootstrap';
 // import * as JQuery from 'jquery';
 // require('../../types/index.d.ts');
 
-$('#editModal').on('show.bs.modal', function(event: ModalEventHandler<HTMLElement>) {
-    const target = event.relatedTarget;
-    console.log('modal', target);
-    if (target === undefined) {
-        return;
-    }
-    const $button = $(target); // モーダル切替えボタン
-    const action = $button.data('action'); // data-* 属性から情報を抽出
-    const name = $button.data('name');
-    const value = $button.data('value');
-
-    // モーダルの内容を更新。ここではjQueryを使用するが、代わりにデータ・バインディング・ライブラリまたは他のメソッドを使用することも可能
-    const $modal = $(this);
-    $modal.find('#edit-tag-name').val(name);
-    $modal.find('#edit-tag-value').val(value);
-    $modal.find('#edit-form').attr('action', action);
-});
+// 新規作成
 $.validator.setDefaults({
     debug: false, // trueの場合、デバッグモードになりフォームは送信されない
     onkeyup: false, // 有効の場合はkeyupの度にremoteが走ってしまうため。。
@@ -41,7 +25,7 @@ $.validator.setDefaults({
 $('#create-form')
     .submit(event => {
         // bootstrap4のカスタムバリデーション
-        const form = $('#create-form')[0] as HTMLFormElement;
+        const form = event.target as HTMLFormElement;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -56,7 +40,7 @@ $('#create-form')
                 pattern: '[a-zA-Z0-9_-]+' // patternを使うにはadditonalの読み込みが必要
                 // remote: {
                 //   url: "check-email.php",
-                //   type: "get",
+                //   type: "post",
                 //   data: {
                 //     username: function() {
                 //       return $( "#username" ).val();
@@ -82,19 +66,31 @@ $('#create-form')
         // }
     });
 
-// var forms = document.getElementsByClassName('needs-validation');
-// // Loop over them and prevent submission
-// var validation = Array.prototype.filter.call(forms, function(form) {
-//     form.addEventListener(
-//         'submit',
-//         function(event: any) {
-//             console.log(event);
-//             if (form.checkValidity() === false) {
-//                 event.preventDefault();
-//                 event.stopPropagation();
-//             }
-//             form.classList.add('was-validated');
-//         },
-//         false
-//     );
-// });
+// 編集
+$('#editModal').on('show.bs.modal', function(event: ModalEventHandler<HTMLElement>) {
+    const target = event.relatedTarget;
+    if (target === undefined) {
+        return;
+    }
+    const $button = $(target); // モーダル切替えボタン
+    const action = $button.data('action'); // data-* 属性から情報を抽出
+    const name = $button.data('name');
+    const point = $button.data('point');
+    const type = $button.data('type');
+    const is_display = $button.data('is_display') === 1;
+
+    // モーダルの内容を更新
+    const $modal = $(this);
+    $modal.find('#edit-coupon-name').val(name);
+    $modal.find('#edit-coupon-type').val(type);
+    $modal.find('#edit-coupon-point').val(point);
+    $modal.find('#edit-coupon-is_display').prop('checked', is_display);
+    $modal.find('#edit-form').attr('action', action);
+});
+// HTML5標準のエラーメッセージのカスタマイズ
+$('#edit-coupon-name').on('invalid', e => {
+    const nameInput = e.target as HTMLInputElement;
+    if (nameInput.value === '') {
+        nameInput.setCustomValidity('名前を入力してください。');
+    }
+});
