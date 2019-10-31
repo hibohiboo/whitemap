@@ -76,4 +76,8 @@ Route::group(['middleware' => ['auth', 'can:admin-access']], function () {
      * クーポン更新
      */
     Route::put('/coupon/{coupon}','Admin\CouponController@update');
+    /**
+     * クーポン削除
+     */
+    Route::delete('/coupon/{coupon}','Admin\CouponController@destroy');
 });

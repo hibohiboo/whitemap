@@ -9,7 +9,7 @@
     {{-- Bootstrapは一度に1つのモーダルウィンドウしかサポートしない。入れ子になったモーダルは、ユーザー経験が乏しいと思われるためサポートされていない。--}}
     {{-- 可能であれば、他の要素からの干渉を避けるために、モーダルHTMLを最上位に配置すること --}}
     <div id="editModal" class="modal fade" tabindex="-1" role="dialog">
-      <form id="edit-form" action="{{ url('coupon')}}" method="POST">
+    <form id="edit-form" action="dummy{{--jsで置き換え--}}" method="POST">
         @csrf
         @method('PUT')
         <div class="modal-dialog" role="document">
@@ -64,6 +64,33 @@
         </div>{{-- /.modal-dialog --}}
       </form>
     </div>{{-- /.modal --}}
+
+    {{-- 削除モーダル--}}
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+        <form id="delete-form" action="dummy" method="POST">
+          @csrf
+          @method('DELETE')
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">削除</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>{{-- /.modal-header --}}
+              <div class="modal-body">
+                <mark id="delete-item-name">{{-- 削除アイテム名 --}}</mark>を削除します。よろしいですか？
+              </div>{{-- /.modal-body --}}
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <button type="submit" class="btn btn-danger">削除</button>
+              </div>{{-- /.modal-footer --}}
+            </div>{{-- /.modal-content --}}
+          </div>{{-- /.modal-dialog --}}
+        </form>
+      </div>{{-- /.modal --}}
+
+    {{-- ここからメイン --}}
     <main class="container">
         <div class="col-sm-offset-2 col-sm-8">
             <div class="card">
@@ -146,7 +173,8 @@
                                     <th>種別</th>
                                     <th>表示</th>
                                     <th>更新日時</th>
-                                    <th>&nbsp;</th>
+                                    <th>{{-- 更新 --}}&nbsp;</th>
+                                    <th>{{-- 削除 --}}&nbsp;</th>
                                 </tr>
                             </thead>
                             {{-- テーブル本体 --}}
@@ -178,6 +206,13 @@
                                     >
                                     <i class="fa fa-btn fa-edit"></i>
                                   </button>
+                                  </td>
+                                  <td>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" 
+                                      data-action="{{ url('coupon/' . $coupon->id) }}" data-name="{{$coupon->name}}"
+                                    >
+                                      <i class="fa fa-btn fa-trash"></i> 
+                                    </button>
                                   </td>
                                 </tr>
                               @endforeach

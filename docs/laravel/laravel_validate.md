@@ -23,3 +23,5 @@ remote を使ったときに ajax エラーとなる可能性。
 [大量の Input タグがあるページで jquery validation の Submit がどえらい遅いのは options.success のせいだったかもしれない。](https://qiita.com/qyen/items/716d49fec68f944e4d06)
 [jQuery Validate Plugin の解説と Validate 日本語環境用 Plugin と jQuery Form Plugin との連携](https://kudakurage.hatenadiary.com/entry/20091211/1260521031)
 [mdn:input](https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input)
+[チェックボックスを作成する](http://recipes.laravel.jp/recipe/209)
+[php:date](https://www.php.net/manual/ja/function.date.php)

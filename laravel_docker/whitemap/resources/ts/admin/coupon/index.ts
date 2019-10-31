@@ -22,10 +22,11 @@ $.validator.setDefaults({
         $(element).removeClass('is-invalid');
     }
 });
-$('#create-form')
+const $createForm: JQuery<HTMLFormElement> = $('#create-form');
+$createForm
     .submit(event => {
         // bootstrap4のカスタムバリデーション
-        const form = event.target as HTMLFormElement;
+        const form = event.target;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -93,4 +94,20 @@ $('#edit-coupon-name').on('invalid', e => {
     if (nameInput.value === '') {
         nameInput.setCustomValidity('名前を入力してください。');
     }
+});
+
+// 削除
+$('#deleteModal').on('show.bs.modal', function(event: ModalEventHandler<HTMLElement>) {
+    const target = event.relatedTarget;
+    if (target === undefined) {
+        return;
+    }
+    const $button = $(target); // モーダル切替えボタン
+    const action = $button.data('action'); // data-* 属性から情報を抽出
+    const name = $button.data('name');
+
+    // モーダルの内容を更新
+    const $modal = $(this);
+    $modal.find('#delete-item-name').text(name);
+    $modal.find('#delete-form').attr('action', action);
 });

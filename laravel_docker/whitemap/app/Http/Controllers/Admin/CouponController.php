@@ -84,7 +84,9 @@ class CouponController extends Controller
      */
     public function destroy(Coupon $coupon)
     {
-        //
+        $coupon->delete();
+
+        return redirect('/coupon');
     }
 
 }
