@@ -145,6 +145,7 @@
                                     <th>値</th>
                                     <th>種別</th>
                                     <th>表示</th>
+                                    <th>更新日時</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -166,6 +167,9 @@
                                   </td>
                                   <td class="table-text">
                                       <div>{{ $coupon->is_display ? '表示' : '隠す'  }}</div>
+                                  </td>
+                                  <td class="table-text">
+                                      <div>{{ $coupon->updated_at->format('Y/m/d H:i:s')  }}</div>
                                   </td>
                                   <td>
                                     <button type="button" class="btn" data-toggle="modal" data-target="#editModal" 
