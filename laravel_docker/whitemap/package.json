@@ -21,7 +21,7 @@
         "firebase": "^7.2.0",
         "firebaseui": "^4.2.0",
         "jquery": "^3.5",
-        "jquery-validation": "^1.19.1",
+        "jquery-validation": "^1.19.3",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.21",
         "popper.js": "^1.12",
