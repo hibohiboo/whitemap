@@ -15,7 +15,7 @@
         "@types/jquery": "^3.3.31",
         "@types/lodash": "^4.14.144",
         "@types/sass": "^1.16.0",
-        "axios": "^0.21",
+        "axios": "^1.6",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.2.1",
         "firebase": "^7.2.0",
